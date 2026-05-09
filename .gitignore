@@ -1,0 +1,20 @@
+# dependencies/build
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+
+# env/secrets
+.env
+**/.env
+*.key
+*.pem
+
+# logs/temp
+*.log
+*.tmp
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/

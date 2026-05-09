@@ -1,0 +1,38 @@
+SUKLIHUB BIR database (XAMPP / Apache htdocs)
+=============================================
+
+1. Copy the whole folder "suklihub-bir" into:
+   C:\xampp\htdocs\suklihub-bir\
+   (or your Apache document root.)
+
+2. In phpMyAdmin: Import → database/schema.sql
+   (Creates database suklihub_bir, all tables, default VAT summary rows, settings.)
+
+   WARNING: schema.sql DROPs existing BIR tables — back up production data first.
+
+3. Copy config.sample.php to config.php and edit MySQL user/password/port if needed.
+
+4. Quick checks in a browser (GET JSON):
+   http://localhost/suklihub-bir/api/settings.php     — taxpayer / period keys (empty defaults)
+   http://localhost/suklihub-bir/api/receipts.php   — Book 1 lines
+   http://localhost/suklihub-bir/api/purchases.php — Book 2 lines
+   http://localhost/suklihub-bir/api/summary.php   — Book 3 lines (pre-seeded s1–s5)
+   http://localhost/suklihub-bir/api/totals.php      — vw_bir_receipt_totals + vw_bir_purchase_totals
+
+POST/PUT (replace-all sync for Books 1–3):
+   { "rows": [ ... ] }  — receipts, purchases, summary (same shape as GET)
+
+POST/PUT settings:
+   { "settings": { "company_tin": "...", ... } }
+
+Catalog & inventory (same MySQL DB, different tables):
+   GET/POST  …/api/products_catalog.php  — global rows keyed by barcode (shared image URL, SRP hint).
+   GET/POST  …/api/inventory_products.php — per-store rows (GET ?store_key=default, POST { "storeKey","rows" }).
+
+In the React app, set in .env (restart Vite):
+   VITE_PRODUCTS_CATALOG_URL=http://localhost/suklihub-bir/api/products_catalog.php
+Inventory → Add Product: Lookup checks your mock list first, then shared catalog; Save Product upserts the shared catalog when that URL is set.
+
+Use a stable HTTPS (or local) image URL in the catalog so every store can reuse it without re-uploading.
+
+Optional: VITE_INVENTORY_PRODUCTS_URL for future bulk sync to inventory_products (not wired in UI yet).
