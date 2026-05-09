@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTTO Slash Commands</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 2rem; color: #111; background: #f8f9fb; }
+    h1, h2 { color: #1a202c; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #cbd5e1; padding: 0.75rem 1rem; text-align: left; }
+    th { background: #edf2f7; }
+    code { background: #e2e8f0; padding: 0.15rem 0.35rem; border-radius: 4px; }
+    pre { background: #edf2f7; padding: 1rem; border-radius: 6px; overflow-x:auto; }
+  </style>
+</head>
+<body>
+  <h1>OTTO Slash Commands</h1>
+  <p>Use these commands in chat to quickly route work to the right agent.</p>
+  <h2>Commands</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Command</th>
+        <th>Agent</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>/project</code></td>
+        <td>Master Orchestrator Agent</td>
+        <td>Select or create active project folder</td>
+      </tr>
+      <tr>
+        <td><code>/post</code></td>
+        <td>GET/POST Endpoint Agent</td>
+        <td>Create POST endpoint and suggested commit message</td>
+      </tr>
+      <tr>
+        <td><code>/get</code></td>
+        <td>GET/POST Endpoint Agent</td>
+        <td>Create GET endpoint and suggested commit message</td>
+      </tr>
+      <tr>
+        <td><code>/api</code></td>
+        <td>GET/POST Endpoint Agent</td>
+        <td>Create GET/POST API routes</td>
+      </tr>
+      <tr>
+        <td><code>/config</code></td>
+        <td>API Config Agent</td>
+        <td>Create <code>.ini</code>, <code>.env.example</code>, JSON, or YAML config</td>
+      </tr>
+      <tr>
+        <td><code>/code</code></td>
+        <td>Fullstack Development Agent</td>
+        <td>Create or edit backend/frontend code</td>
+      </tr>
+      <tr>
+        <td><code>/ui</code></td>
+        <td>UI/UX Agent</td>
+        <td>Create UI screen/component/layout</td>
+      </tr>
+      <tr>
+        <td><code>/db</code></td>
+        <td>Database Agent</td>
+        <td>Safe readonly SQL/schema/query work</td>
+      </tr>
+      <tr>
+        <td><code>/debug</code></td>
+        <td>Debug & QA Agent</td>
+        <td>Debug error/log/test failure</td>
+      </tr>
+      <tr>
+        <td><code>/deploy</code></td>
+        <td>Automation & Deployment Agent</td>
+        <td>Docker/VPS/deployment workflow</td>
+      </tr>
+      <tr>
+        <td><code>/docs</code></td>
+        <td>Documentation Agent</td>
+        <td>README, Tagalog guide, tutorial</td>
+      </tr>
+      <tr>
+        <td><code>/report</code></td>
+        <td>Analytics & Reports Agent</td>
+        <td>Dashboard, chart, PDF/Excel report</td>
+      </tr>
+      <tr>
+        <td><code>/fast</code></td>
+        <td>Fast Utility Agent</td>
+        <td>Simple cheap task</td>
+      </tr>
+    </tbody>
+  </table>
+  <h2>Command Rules</h2>
+  <p>Every command goes through Master Orchestrator first.</p>
+  <p>Every command must include a suggested commit message when files change.</p>
+  <p><code>/post</code> and <code>/get</code> must validate inputs and avoid secret exposure.</p>
+  <p><code>/db</code> is readonly by default.</p>
+  <p>No command may read or expose <code>.env</code>.</p>
+  <h2><code>/project</code> Format</h2>
+  <pre><code>/project &lt;project-name&gt;</code></pre>
+  <p>Example:</p>
+  <pre><code>/project inventory-app</code></pre>
+  <p>This selects or creates:</p>
+  <pre><code>.otto/projects/inventory-app/</code></pre>
+  <p>Files inside:</p>
+  <pre><code>project.md
+tasks.md
+decisions.md
+notes.md</code></pre>
+  <p>Do not store secrets in project folders.</p>
+  <h2><code>/post</code> Format</h2>
+  <pre><code>/post resource=&lt;name&gt; fields=&lt;field1,field2&gt; auth=&lt;yes/no&gt;</code></pre>
+  <p>Example:</p>
+  <pre><code>/post resource=orders fields=customer_id,total,status auth=yes</code></pre>
+  <p>Expected output:</p>
+  <ul>
+    <li>Created route</li>
+    <li>Validation rules</li>
+    <li>Request example</li>
+    <li>Response example</li>
+    <li>Tests/checks</li>
+    <li>Suggested commit message</li>
+  </ul>
+  <h2>Commit Rule</h2>
+  <pre><code>Commit message:
+&lt;type&gt;: &lt;short summary&gt;</code></pre>
+</body>
+</html>
