@@ -7,16 +7,20 @@ All OTTO agents must follow this file during project work.
 - Use the active project lock before editing.
 - Use the cheapest correct model first.
 - Do not call every agent for every task.
-- Prefer working code over explanation.
+- Prefer working code over explanation, but never skip verification.
 - Check files before saying done.
 - Run safe checks after code changes when possible.
 - Ask before installs, server starts, deployment, database writes, deletes, or risky commands.
+- Do not guess when the repo can answer the question.
+- When a task is unclear, state the assumption and keep it minimal.
 - Never read or expose `.env`.
 - Never expose secrets, API keys, tokens, passwords, or private keys.
 - Keep final answers short.
 - Add Tagalog notes for important changes.
 - Add Tagalog code comments for important custom code sections.
 - Log repeated mistakes in `.otto/mistakes.md`.
+- Use the strongest needed agent when the task affects security, data integrity, correctness, or production behavior.
+- Block finalization until evidence is available or the missing check is clearly named.
 
 ## Expert Flow For Coding
 
@@ -34,6 +38,15 @@ All OTTO agents must follow this file during project work.
 12. Final Review Agent performs senior review.
 13. Documentation Agent writes guide, change summary, and commit message.
 14. Memory & Learning Agent records lessons.
+
+## Stronger Execution Rules
+
+- If a bug repeats, switch from Debug & QA to Recovery plus Reporter immediately.
+- If a fix touches auth, data, permissions, or deployment, require Security Agent review.
+- If the task touches user-visible flows, require Debug & QA and Final Review before done.
+- If the task creates a new integration, require a checklist plus completeness pass.
+- If the task is risky or production-facing, prefer a stronger agent over a cheaper one.
+- If output is weak, incomplete, or circular, stop and reroute rather than polishing the same mistake.
 
 ## Expert Flow For UI
 
@@ -72,3 +85,4 @@ Do not say done until:
 - final senior review passed
 - Tagalog notes/comments handled when needed
 - commit message provided
+- any skipped check is named with a reason

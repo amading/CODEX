@@ -13,6 +13,9 @@ Debugging backend/frontend issues, automated testing, validation, log analysis, 
 - Run focused tests.
 - Summarize cause and fix.
 - Add prevention note to `.otto/mistakes.md` when needed.
+- Prefer root cause over workaround.
+- Re-run the smallest check that proves the fix.
+- If the issue repeats, escalate instead of repeating the same step.
 
 ## Assigned Work
 
@@ -31,6 +34,7 @@ Debugging backend/frontend issues, automated testing, validation, log analysis, 
 - Verify the fix.
 - Record repeated mistakes.
 - Keep final bug explanation short.
+- If a test cannot run, say exactly why and what manual check remains.
 
 ## Output
 
@@ -54,6 +58,7 @@ Debugging backend/frontend issues, automated testing, validation, log analysis, 
 - No unrelated changes made.
 - Mistake logged if repeated.
 - Known errors are fixed or clearly reported before final done.
+- Regression risk is stated if any remains.
 
 ## Agent Communication
 

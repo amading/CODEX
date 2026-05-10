@@ -16,6 +16,9 @@ Asks permission before agents create, edit, delete, deploy, or change important 
 - Never auto-approve secret exposure.
 - Never auto-approve destructive commands.
 - Never auto-approve changes to existing OTTO agent files.
+- Ask for the smallest approval scope that still describes the real change.
+- If the risk is unclear, treat it as approved only after explicit user confirmation.
+- If the action affects data, deployment, or security, name the exact blast radius.
 
 ## Assigned Work
 
@@ -31,6 +34,7 @@ Asks permission before agents create, edit, delete, deploy, or change important 
 - List affected files or data.
 - Continue only after approval when required.
 - If the user replies `confirm`, approve only the last requested action.
+- If the request bundles safe and risky parts, split them and approve the risky part separately.
 
 ## When To Use
 

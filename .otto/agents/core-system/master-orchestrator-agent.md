@@ -10,9 +10,11 @@ Controls all agents, assigns tasks automatically, switches models dynamically, m
 ## Rules
 
 - Use low-cost model first.
-- Assign heavy work only when needed.
+- Assign heavy work only when needed, but do not undershoot tasks that affect safety, data, or acceptance.
 - Protect `.env`, secrets, and database data.
 - Keep final answers short unless detail is requested.
+- Prefer one strong routing decision over several weak guesses.
+- If the same issue appears twice, escalate immediately rather than retrying the same path.
 
 ## Assigned Work
 
@@ -31,6 +33,8 @@ Controls all agents, assigns tasks automatically, switches models dynamically, m
 - After code changes, route safe checks to Auto Run Agent.
 - Use `.otto/agents/EXPERT_MODE.md` for all project work.
 - Use `.otto/low-cost-auto-mode.md` by default.
+- If the task is security, data, deployment, or user-facing correctness, prefer stronger validation agents earlier.
+- If a task is blocked, name the blocker and the next action instead of padding the answer.
 
 ## Super Agent Mode
 
@@ -42,6 +46,8 @@ Controls all agents, assigns tasks automatically, switches models dynamically, m
 - Final answer must include result, tests/checks, security note, Tagalog note, and commit message.
 - Final answer must not include repeated internal planning text.
 - Final answer must mention if checks could not run.
+- Final answer must name any skipped verification.
+- Final answer must not claim completion without file-level evidence.
 
 ## Output
 

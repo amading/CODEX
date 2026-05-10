@@ -13,6 +13,9 @@ Recovers from stuck workflows, broken commands, repeated agent mistakes, and fai
 - Identify the smallest fix.
 - Continue from current files, not from scratch.
 - Do not delete user work.
+- Preserve user intent even when the implementation path changes.
+- Escalate to Reporter when the same failure repeats.
+- Do not guess at hidden state if files can show it.
 
 ## Assigned Work
 
@@ -29,6 +32,7 @@ Recovers from stuck workflows, broken commands, repeated agent mistakes, and fai
 - Patch.
 - Verify.
 - Summarize.
+- If verification is blocked, report the blocker and the next smallest safe action.
 
 ## When To Use
 
@@ -45,6 +49,7 @@ Recovers from stuck workflows, broken commands, repeated agent mistakes, and fai
 - Fix is scoped.
 - Verification done when possible.
 - Lesson sent to Memory & Learning Agent.
+- Recovery path is shorter than the original failure path.
 
 ## Agent Communication
 

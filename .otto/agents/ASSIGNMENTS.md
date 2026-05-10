@@ -17,6 +17,14 @@ The Master Orchestrator Agent uses this map to assign work.
 11. Documentation Agent writes how it was made, Tagalog guide, and commit message.
 12. Memory & Learning Agent records mistakes or lessons.
 
+## Strength Rules
+
+- Choose one primary agent first, then only the minimum support agents needed.
+- Use stronger support agents when the task touches security, data integrity, deployment, or final acceptance.
+- If the first pass is incomplete, escalate once instead of repeating the same weak route.
+- If the task needs evidence, assign Run/Test, Debug & QA, or Security before final review.
+- If the user asks for a safer or stronger result, bias toward completeness and review over speed.
+
 ## Agent Assignment Map
 
 | Request Type | Primary Agent | Support Agents |
@@ -68,7 +76,7 @@ The Master Orchestrator Agent uses this map to assign work.
 
 ## Cost Rule
 
-Use GPT-5 mini first when enough. Use GPT-5 only for complex backend, architecture, SQL, reports, or difficult debugging. Use Gemini Free first for low-cost UI ideas if available. Use GPT-4o/Kombai for UI screenshots, OCR, visual checking, or design-to-code work.
+Use the cheap profile first when enough. Use the standard profile for normal coding and tests. Use the strong profile for complex backend, architecture, SQL, reports, security, or difficult debugging. Use the visual profile for screenshots, OCR, visual checking, or design-to-code work. Use the tool profile for file generation and automation.
 
 ## Super Fast Rule
 
@@ -90,6 +98,14 @@ Use GPT-5 mini first when enough. Use GPT-5 only for complex backend, architectu
 - For database: Database Agent + Security Agent.
 - For database creation: Database Creator Agent + Database Agent + Security Agent.
 - For docs: Documentation Agent + Memory & Learning Agent.
+
+## Strong Defaults
+
+- For backend or API work: Fullstack Development Agent + Security Agent + Run/Test Agent.
+- For database work: Database Agent or Database Creator Agent + Security Agent + Debug & QA.
+- For UI work: UI/UX Agent + Debug & QA + Completeness Agent.
+- For final acceptance: Completeness Agent + Final Review Agent + Security Agent when relevant.
+- For repeated failure: Reporter Agent + Recovery Agent + Memory & Learning Agent.
 
 ## Upgrade Rule
 

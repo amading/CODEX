@@ -7,6 +7,7 @@ It must never contain secrets, API keys, tokens, passwords, database dumps, or `
 ## Files
 
 - `agent-routing.md`: Human-readable routing map for OTTO agents.
+- `model-routing.json`: Provider-flexible model profiles for Codex, Cursor, Claude, and tool routing.
 - `agents/`: Individual files for each OTTO agent.
 - `agent-communication.md`: Rules for how agents talk through logs.
 - `approval-policy.md`: Approval mode and risky-action rules.

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "goal": "Minimize AI cost while keeping enough capability for each OTTO task.",
+  "defaultProfile": "cheap",
+  "environmentDetection": {
+    "codex": {
+      "signals": ["CODEX", "OpenAI Codex", "codex workspace"],
+      "provider": "openai"
+    },
+    "cursor": {
+      "signals": ["Cursor", ".cursor", "cursor rules"],
+      "provider": "cursor"
+    },
+    "claude": {
+      "signals": ["Claude", "Anthropic", "claude workspace"],
+      "provider": "anthropic"
+    }
+  },
+  "profiles": {
+    "cheap": {
+      "purpose": "Simple edits, summaries, routing, documentation, quick commands.",
+      "codex": "GPT-5 mini",
+      "cursor": "Auto / cheapest fast model",
+      "claude": "Claude Haiku"
+    },
+    "standard": {
+      "purpose": "Normal coding, small features, tests, refactors.",
+      "codex": "GPT-5 mini or GPT-5 when needed",
+      "cursor": "Auto",
+      "claude": "Claude Sonnet"
+    },
+    "strong": {
+      "purpose": "Complex backend, database, architecture, security, analytics, hard debugging.",
+      "codex": "GPT-5",
+      "cursor": "Max / strongest coding mode",
+      "claude": "Claude Sonnet or Opus"
+    },
+    "deep": {
+      "purpose": "Very high-risk architecture, security review, production incident analysis.",
+      "codex": "GPT-5.5 when available, otherwise GPT-5 high reasoning",
+      "cursor": "Max / strongest reasoning mode",
+      "claude": "Claude Opus"
+    },
+    "visual": {
+      "purpose": "Screenshots, UI inspection, OCR, image understanding, visual design.",
+      "codex": "GPT-4o or current visual-capable OpenAI model",
+      "cursor": "Visual-capable model if available",
+      "claude": "Claude Sonnet visual"
+    },
+    "tool": {
+      "purpose": "File generation, repository automation, local agent tooling.",
+      "codex": "OpenCode / Codex tools",
+      "cursor": "Cursor agent tools",
+      "claude": "Claude tool-use mode"
+    }
+  },
+  "taskRouting": {
+    "orchestration": "cheap",
+    "simple_question": "cheap",
+    "small_edit": "cheap",
+    "documentation": "cheap",
+    "normal_coding": "standard",
+    "tests_and_lint": "cheap",
+    "debugging": "standard",
+    "repeated_error": "strong",
+    "backend_api": "standard",
+    "database": "strong",
+    "security": "strong",
+    "architecture": "strong",
+    "analytics_reports": "strong",
+    "ui_ux": "visual",
+    "screenshots_ocr": "visual",
+    "deployment_automation": "standard",
+    "file_generation": "tool"
+  },
+  "escalationRules": [
+    "Start with the cheapest sufficient profile.",
+    "Escalate only when the current profile is likely to fail or has failed once.",
+    "Use deep only for high-risk or production-critical work.",
+    "Use visual only when images, screenshots, UI inspection, or OCR are required.",
+    "If the platform cannot switch models automatically, follow this file as manual routing guidance."
+  ]
+}

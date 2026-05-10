@@ -1,48 +1,63 @@
 # OTTO Agent Routing
 
-Use this compact agent list for low-cost Codex/OpenCode work.
+Use this compact agent list for low-cost, provider-flexible work across Codex, Cursor, Claude, and OpenCode.
+
+## Model Routing Policy
+
+Use `.otto/model-routing.json` as the source of truth for model profiles.
+
+| Profile | Use For | Codex/OpenAI | Cursor | Claude |
+| --- | --- | --- | --- | --- |
+| cheap | Simple edits, summaries, routing, docs, quick commands | GPT-5 mini | Auto / cheapest fast model | Claude Haiku |
+| standard | Normal coding, small features, tests, refactors | GPT-5 mini or GPT-5 when needed | Auto | Claude Sonnet |
+| strong | Backend, database, security, analytics, architecture, hard debugging | GPT-5 | Max / strongest coding mode | Claude Sonnet or Opus |
+| deep | High-risk architecture, security review, production incidents | GPT-5.5 when available, otherwise GPT-5 high reasoning | Max / strongest reasoning mode | Claude Opus |
+| visual | Screenshots, UI inspection, OCR, image understanding, visual design | GPT-4o or current visual-capable OpenAI model | Visual-capable model if available | Claude Sonnet visual |
+| tool | File generation, repo automation, local tooling | OpenCode / Codex tools | Cursor agent tools | Claude tool-use mode |
+
+If a platform cannot switch models automatically, simulate the routing by using the cheapest available model and manually escalate only when needed.
 
 | Agent | Model | Purpose |
 | --- | --- | --- |
-| Master Orchestrator Agent | GPT-5 mini | Controls workflow, assigns tasks, switches models |
-| Model Router Agent | GPT-5 mini | Auto-selects cheapest useful model/tool and escalates when needed |
-| Approval Gate Agent | GPT-5 mini | Asks permission before creating/changing data or risky actions |
-| Agent Upgrade Advisor | GPT-5 mini | Suggests safe upgrades for OTTO agents |
-| Project Creator Agent | GPT-5 mini | Creates new project folders and starter files |
-| Project Upgrade Agent | GPT-5 mini | Upgrades existing projects safely |
-| Project Lock Agent | GPT-5 mini | Prevents wrong-project edits |
-| Fullstack Development Agent | GPT-5 + OpenCode | Backend, frontend, APIs, file generation |
-| Database Agent | GPT-5 | SQL optimization, readonly queries, database safety |
-| Database Creator Agent | GPT-5 | Creates schemas, migrations, seed templates, ERD notes |
-| Web Scraper / Backend Fetch Agent | GPT-5 | Fetches product hints from web/backend lookup sources |
-| UI/UX Agent | Gemini Free / GPT-4o / Kombai | UI, mobile, layouts, responsive design |
-| Debug & QA Agent | GPT-5 mini | Debugging, testing, validation, error fixing |
-| Requirement Trace Agent | GPT-5 mini | Tracks every user requirement as IDs |
-| Checklist Agent | GPT-5 mini | Creates complete project checklist |
-| Gap Detection Agent | GPT-5 mini | Finds missing modules/features |
-| Completeness Agent | GPT-5 | Checks all program parts before final output |
-| Final Review Agent | GPT-5 | Senior final project inspection |
-| Loop Guard Agent | GPT-5 mini | Detects repeated planning/output loops |
-| Output Control Agent | GPT-5 mini | Keeps final answers short and clean |
-| Recovery Agent | GPT-5 mini | Recovers stuck or failed workflows |
-| Reporter Agent | GPT-5 mini | Reports blockers, repeated errors, and missing dependencies to Orchestrator |
-| Run & Fix Agent | GPT-5 mini | Runs checks and fixes errors after approval |
-| Auto Run Agent | GPT-5 mini | Auto-runs safe checks after code changes |
-| Terminal Runner Agent | GPT-5 mini | Runs approved terminal commands |
-| Package Installer Agent | GPT-5 mini | Installs approved packages |
-| Run/Test Agent | GPT-5 mini | Runs tests/build/lint checks |
-| Code Comment Agent | GPT-5 mini | Adds short Tagalog comments to project code |
-| Dependency Audit Agent | GPT-5 mini | Reviews dependency risk and bloat |
-| Local Server Agent | GPT-5 mini | Starts/checks local dev servers after approval |
-| RAG & Vision Agent | GPT-4o + GPT-5 mini | OCR, screenshots, documents, search |
-| Security Agent | GPT-5 mini | Protects `.env`, secrets, database, permissions |
-| Automation & Deployment Agent | GPT-5 mini | Bots, workflows, Docker, VPS, syncing |
-| API Config Agent | GPT-5 mini | Auto creates `.ini`/config files for project settings |
-| GET/POST Endpoint Agent | GPT-5 | Creates GET/POST API routes from project config |
-| Documentation Agent | GPT-5 mini | README, Tagalog notes, tutorials, comments |
-| Memory & Learning Agent | GPT-5 mini | Learns mistakes, audit logs, retry prevention |
-| Analytics & Reports Agent | GPT-5 | Dashboards, charts, PDF/Excel reports |
-| Fast Utility Agent | GPT-5 mini | Cheap/simple quick tasks |
+| Master Orchestrator Agent | cheap | Controls workflow, assigns tasks, switches models |
+| Model Router Agent | cheap | Auto-selects cheapest useful model/tool and escalates when needed |
+| Approval Gate Agent | cheap | Asks permission before creating/changing data or risky actions |
+| Agent Upgrade Advisor | cheap | Suggests safe upgrades for OTTO agents |
+| Project Creator Agent | cheap | Creates new project folders and starter files |
+| Project Upgrade Agent | standard | Upgrades existing projects safely |
+| Project Lock Agent | cheap | Prevents wrong-project edits |
+| Fullstack Development Agent | standard + tool | Backend, frontend, APIs, file generation |
+| Database Agent | strong | SQL optimization, readonly queries, database safety |
+| Database Creator Agent | strong | Creates schemas, migrations, seed templates, ERD notes |
+| Web Scraper / Backend Fetch Agent | standard | Fetches product hints from web/backend lookup sources |
+| UI/UX Agent | visual | UI, mobile, layouts, responsive design |
+| Debug & QA Agent | standard | Debugging, testing, validation, error fixing |
+| Requirement Trace Agent | cheap | Tracks every user requirement as IDs |
+| Checklist Agent | cheap | Creates complete project checklist |
+| Gap Detection Agent | cheap | Finds missing modules/features |
+| Completeness Agent | strong | Checks all program parts before final output |
+| Final Review Agent | strong | Senior final project inspection |
+| Loop Guard Agent | cheap | Detects repeated planning/output loops |
+| Output Control Agent | cheap | Keeps final answers short and clean |
+| Recovery Agent | standard | Recovers stuck or failed workflows |
+| Reporter Agent | cheap | Reports blockers, repeated errors, and missing dependencies to Orchestrator |
+| Run & Fix Agent | standard | Runs checks and fixes errors after approval |
+| Auto Run Agent | cheap | Auto-runs safe checks after code changes |
+| Terminal Runner Agent | cheap | Runs approved terminal commands |
+| Package Installer Agent | cheap | Installs approved packages |
+| Run/Test Agent | cheap | Runs tests/build/lint checks |
+| Code Comment Agent | cheap | Adds short Tagalog comments to project code |
+| Dependency Audit Agent | standard | Reviews dependency risk and bloat |
+| Local Server Agent | cheap | Starts/checks local dev servers after approval |
+| RAG & Vision Agent | visual | OCR, screenshots, documents, search |
+| Security Agent | strong | Protects `.env`, secrets, database, permissions |
+| Automation & Deployment Agent | standard | Bots, workflows, Docker, VPS, syncing |
+| API Config Agent | cheap | Auto creates `.ini`/config files for project settings |
+| GET/POST Endpoint Agent | standard | Creates GET/POST API routes from project config |
+| Documentation Agent | cheap | README, Tagalog notes, tutorials, comments |
+| Memory & Learning Agent | cheap | Learns mistakes, audit logs, retry prevention |
+| Analytics & Reports Agent | strong | Dashboards, charts, PDF/Excel reports |
+| Fast Utility Agent | cheap | Cheap/simple quick tasks |
 
 ## Hard Rules
 
@@ -51,7 +66,10 @@ Use this compact agent list for low-cost Codex/OpenCode work.
 - Database work is readonly by default.
 - Allowed SQL: `SELECT`, `SHOW`, `DESCRIBE`, `EXPLAIN`.
 - Block SQL: `DELETE`, `DROP`, `TRUNCATE`, unsafe `UPDATE`.
-- Use GPT-5 mini first when possible to save cost.
+- Use the `cheap` profile first when possible to save cost.
+- Use `standard`, `strong`, `deep`, `visual`, or `tool` only when the task requires it.
+- Prefer the active workspace provider: Codex in Codex, Cursor in Cursor, Claude in Claude.
+- If provider auto-switching is unavailable, keep the same agent workflow and manually choose the matching model profile.
 - All agents must read latest 5 entries from `.otto/agent-messages.md` before acting.
 - If same error repeats 2x, route to Reporter Agent and Recovery Agent immediately.
 - Reporter Agent must append entries to `.otto/audit-log.md` and `.otto/mistakes.md`.

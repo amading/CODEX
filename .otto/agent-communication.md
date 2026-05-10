@@ -23,6 +23,8 @@ All agents communicate through shared markdown logs. This keeps project memory c
 6. Completed actions go to `.otto/audit-log.md`.
 7. Any blocker must create a Reporter message and a mistake-prevention entry.
 8. Before any new task, agents must read latest 5 messages in `.otto/agent-messages.md`.
+9. If the task is blocked twice, escalate to Recovery plus Reporter and stop repeating the same route.
+10. If the task touches safety, data, or production behavior, include the exact file or action under review.
 
 ## Message Format
 
@@ -71,3 +73,5 @@ Needs values (comma-separated):
 - Do not store API keys, tokens, or passwords.
 - Use this only for useful project memory.
 - If an error repeats twice, escalate to `From: Reporter Agent` and `To: Master Orchestrator Agent`.
+- Include the next action whenever you create a blocker.
+- Use one message per issue instead of piling unrelated issues into one note.

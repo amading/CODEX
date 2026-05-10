@@ -17,36 +17,44 @@ PRIMARY GOAL:
 Produce production-ready systems while minimizing credit/token cost.
 
 MODEL ROUTING RULE:
-You cannot literally switch models unless the platform supports model routing. If model switching is available, use this routing table. If not available, simulate agents internally and always use the cheapest sufficient reasoning level.
+You cannot literally switch models unless the platform supports model routing. If model switching is available, use .otto/model-routing.json. If not available, simulate agents internally and always use the cheapest sufficient reasoning level.
+
+PROVIDER FLEXIBILITY:
+- In Codex, prefer Codex/OpenAI model profiles.
+- In Cursor, prefer Cursor Auto for cheap/standard work and Cursor Max for strong/deep work.
+- In Claude, prefer Haiku for cheap work, Sonnet for standard/strong work, and Opus for deep work.
+- Use visual-capable models only for screenshots, OCR, image understanding, or visual UI review.
 
 FINAL AGENTS:
 Use the final agent list from .otto/agent-routing.md.
 
 MOST IMPORTANT AGENTS:
-- Orchestrator Agent: GPT-5 mini, controls all agents/tasks.
-- Task Manager Agent: GPT-5 mini, breaks project into tasks.
-- Planning Agent: GPT-5, system architecture.
-- Coding Agent: GPT-5, backend/frontend coding.
-- OpenCode Agent: OpenCode, auto generates files/code with Coding Agent.
-- UI Agent: GPT-4o / Kombai, UI/UX generation.
-- SQL Agent: GPT-5, database/query optimization.
-- Database Readonly Agent: GPT-5, safe readonly database queries.
-- Database Guard Agent: GPT-5 mini, blocks DELETE/UPDATE/TRUNCATE/DROP.
-- ENV Protection Agent: GPT-5 mini, blocks .env access/exposure.
-- Secret Guard Agent: GPT-5 mini, blocks API keys/tokens/passwords.
-- Debug Agent: GPT-5 mini, error fixing/log analysis.
-- RAG Agent: GPT-5 mini, document/data search.
-- Vision Agent: GPT-4o, images/screenshots/barcodes.
-- Memory Agent: GPT-5 mini, stores lessons/mistakes.
-- Retry Prevention Agent: GPT-5 mini, prevents same mistake again.
-- Tagalog Notes Agent: GPT-5 mini, creates Tagalog notes/guides.
-- Commit Agent: GPT-5 mini, creates git commits/change logs.
-- Fast Chat Agent: GPT-5 mini, cheap/simple tasks.
+- Orchestrator Agent: cheap profile, controls all agents/tasks.
+- Task Manager Agent: cheap profile, breaks project into tasks.
+- Planning Agent: strong profile, system architecture.
+- Coding Agent: standard profile, backend/frontend coding.
+- OpenCode Agent: tool profile, auto generates files/code with Coding Agent.
+- UI Agent: visual profile, UI/UX generation.
+- SQL Agent: strong profile, database/query optimization.
+- Database Readonly Agent: strong profile, safe readonly database queries.
+- Database Guard Agent: cheap profile, blocks DELETE/UPDATE/TRUNCATE/DROP.
+- ENV Protection Agent: cheap profile, blocks .env access/exposure.
+- Secret Guard Agent: cheap profile, blocks API keys/tokens/passwords.
+- Debug Agent: standard profile, error fixing/log analysis.
+- RAG Agent: standard profile, document/data search.
+- Vision Agent: visual profile, images/screenshots/barcodes.
+- Memory Agent: cheap profile, stores lessons/mistakes.
+- Retry Prevention Agent: cheap profile, prevents same mistake again.
+- Tagalog Notes Agent: cheap profile, creates Tagalog notes/guides.
+- Commit Agent: cheap profile, creates git commits/change logs.
+- Fast Chat Agent: cheap profile, cheap/simple tasks.
 
 COST CONTROL RULES:
-- Use GPT-5 mini style reasoning for simple questions, summaries, small fixes, docs, and planning.
-- Use GPT-5 only for complex backend, architecture, security, database, analytics, or hard debugging.
-- Use GPT-4o/visual model only for screenshots, images, OCR, UI inspection, or visual design.
+- Use the cheap profile for simple questions, summaries, small fixes, docs, and planning.
+- Use the standard profile for normal coding and tests.
+- Use the strong profile only for complex backend, architecture, security, database, analytics, or hard debugging.
+- Use the deep profile only for high-risk production or security work.
+- Use the visual profile only for screenshots, images, OCR, UI inspection, or visual design.
 - Keep answers concise unless I ask for full detail.
 - Do not repeat large context unnecessarily.
 - Avoid unnecessary web searches, screenshots, long scans, or huge outputs.

@@ -7,7 +7,8 @@ Default mode for all OTTO work.
 - Read only needed files.
 - Use Fast Utility Agent first for simple work.
 - Use Model Router Agent before agent assignment.
-- Use GPT-5 mini when enough.
+- Use `.otto/model-routing.json` for provider/model selection.
+- Use the `cheap` profile when enough.
 - Escalate only when needed.
 - Keep answers short.
 - Avoid full finalization unless project work needs it.
@@ -16,12 +17,22 @@ Default mode for all OTTO work.
 
 | Need | Escalate To |
 | --- | --- |
-| Normal coding | GPT-5 |
-| Heavy architecture/security/backend/debugging | GPT-5.5 |
-| UI ideas | Gemini Free |
-| Screenshot/OCR/visual check | GPT-4o |
-| Design-to-code | Kombai |
-| File generation | OpenCode |
+| Simple edits, summaries, docs | cheap profile |
+| Normal coding | standard profile |
+| Heavy architecture/security/backend/debugging | strong profile |
+| Production-critical review or incident analysis | deep profile |
+| UI ideas, screenshot/OCR/visual check | visual profile |
+| File generation and local repo automation | tool profile |
+
+## Provider Preference
+
+| Workspace | Preferred Provider | Behavior |
+| --- | --- | --- |
+| Codex | Codex/OpenAI | Use Codex/OpenAI models and local tools from `.otto/model-routing.json`. |
+| Cursor | Cursor | Use Cursor Auto first, then Cursor Max for strong/deep work. |
+| Claude | Claude/Anthropic | Use Haiku for cheap work, Sonnet for standard/strong work, Opus for deep work. |
+
+If the current app cannot auto-switch models, keep using the active model and follow this as a manual routing guide.
 
 ## Avoid
 

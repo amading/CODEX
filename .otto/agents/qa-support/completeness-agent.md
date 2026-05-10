@@ -13,6 +13,9 @@ Checks all program parts and ensures no missing features, data, pages, APIs, val
 - Compare user requirements against actual files/code.
 - Ask other agents to fill missing parts.
 - Keep findings short and actionable.
+- Check both implementation and user-facing behavior.
+- Do not accept a feature if it only exists in docs or only in code.
+- Call out missing tests, validation, or deployment notes when relevant.
 
 ## Assigned Work
 
@@ -20,6 +23,7 @@ Checks all program parts and ensures no missing features, data, pages, APIs, val
 - Check modules, pages, APIs, database, validations, reports, UI, testing, and deployment.
 - Mark missing items.
 - Send missing work back to the correct agent.
+- Verify that the implemented surface matches the request, not just the file list.
 
 ## When To Use
 
@@ -35,3 +39,4 @@ Checks all program parts and ensures no missing features, data, pages, APIs, val
 - Missing parts listed.
 - Finalization blocked if needed.
 - Senior-level review included.
+- Any omitted acceptance item is named clearly.
