@@ -1,3 +1,14 @@
 # Project Notes
 
-No notes yet.
+## Current
+
+- None yet.
+
+## Recent
+
+- None yet.
+
+## Follow-up
+
+- None yet.
+

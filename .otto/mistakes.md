@@ -4,6 +4,7 @@ Use this file to record repeated mistakes and how to avoid them.
 
 ## Current Lessons
 
+- When deciding project scope, use the outer workspace root first so sibling projects are visible; do not assume the nested app folder is the whole workspace.
 - Do not rely on Chat instructions alone for real model switching. Real auto-switching requires platform support such as Auto mode, OpenCode routing, Agents SDK, LiteLLM, OpenRouter, or a custom API router.
 - Never read, print, or summarize `.env` files or secrets.
 - Treat database access as readonly unless the user explicitly approves a safe write operation.

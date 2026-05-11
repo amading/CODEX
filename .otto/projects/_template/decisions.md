@@ -1,3 +1,10 @@
 # Project Decisions
 
-No decisions yet.
+## Open
+
+- None yet.
+
+## Final
+
+- None yet.
+

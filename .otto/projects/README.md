@@ -1,39 +1,27 @@
 # OTTO Projects
 
-Put one folder per project here.
+Store one folder per project here.
 
-## How To Select A Project
-
-Use:
+## Folder Pattern
 
 ```text
-/project <project-name>
-```
-
-Example:
-
-```text
-/project inventory-app
-```
-
-Then use agent commands:
-
-```text
-/code create login system
-/post resource=orders fields=customer_id,total,status auth=yes
-/ui create dashboard page
-/db explain orders table
-/docs create setup guide
-```
-
-## Project Folder Example
-
-```text
-.otto/projects/inventory-app/
+.otto/projects/<project-name>/
   project.md
+  notes.md
   tasks.md
   decisions.md
-  notes.md
 ```
 
-Do not store `.env`, secrets, API keys, passwords, or database dumps in this folder.
+## Use
+
+1. Create a project folder for the workspace area you are working on.
+2. Copy the files from `_template/` into that folder.
+3. Keep entries short, current, and factual.
+4. Update notes as work changes.
+
+## Safety
+
+- Do not store `.env` files.
+- Do not store secrets, tokens, passwords, or database dumps.
+- Keep project notes readonly-safe unless the user explicitly approves changes.
+

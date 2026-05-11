@@ -1,5 +1,9 @@
 # OTTO Task Board
 
+## Workspace Scope
+
+This outer workspace contains multiple projects. Treat each top-level sibling folder as its own project and keep work scoped to the selected project unless cross-project work is explicitly requested.
+
 ## Current Task
 
 Status: Ready
@@ -14,4 +18,6 @@ Active Project: tic-toc-tips
 
 - Use this file to track active project tasks.
 - Keep updates short.
+- Agents should write guide notes as they work so the next agent can continue safely.
+- Record the active project folder before making edits.
 - Do not store secrets.

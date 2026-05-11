@@ -1,23 +1,17 @@
 # Project Name
 
-Name:
-
-Status: Planning
-
-Primary Goal:
-
-Tech Stack:
-
-Backend:
-
-Frontend:
-
-Database:
-
-Notes:
+- Name:
+- Workspace path:
+- Status: Planning
+- Owner:
+- Goal:
+- Stack:
+- Key files:
+- Notes:
 
 ## Safety
 
 - Do not store `.env`.
-- Do not store secrets.
-- Database is readonly unless approved.
+- Do not store secrets or tokens.
+- Do not record passwords or database dumps.
+

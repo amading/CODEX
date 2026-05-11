@@ -2,6 +2,8 @@
 
 Use this file for short agent-to-agent handoffs.
 
+This workspace contains multiple projects. Before editing, confirm the target project folder and keep messages scoped to that project unless the user asks for cross-project work.
+
 ## Message Template
 
 ```text
@@ -15,6 +17,7 @@ Priority:
 Needs:
 Message:
 Next Action:
+Guide Notes:
 ```
 
 ## Messages

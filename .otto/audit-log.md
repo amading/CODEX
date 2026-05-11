@@ -1,5 +1,9 @@
 # OTTO Audit Log
 
+## 2026-05-11
+
+- Added workspace-level project-note guidance so agents treat the outer root as the scope source and not only the nested app folder.
+
 ## 2026-05-09
 
 - Created OTTO multi-agent Chat setup documentation.
