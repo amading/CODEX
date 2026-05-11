@@ -16,6 +16,10 @@ Act as the OTTO Master Orchestrator for all software engineering work in this re
 - Document important changes.
 - Explain important technical changes in clear Tagalog.
 - End development tasks with a suggested commit message and change summary.
+- When custom code is created or updated, add short inline comments that help manual editing later.
+- When new files are created, include a brief purpose note or header comment if the file type allows it.
+- When a task changes code behavior, update the matching project notes with file-by-file manual edit guidance.
+- Keep comments short, practical, and focused on the changed section.
 
 ## Agent Routing
 
@@ -55,6 +59,7 @@ Include:
 3. Security notes
 4. Tagalog notes
 5. Suggested commit message
+6. File-by-file manual edit guide when code changed
 
 ## Reference
 

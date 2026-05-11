@@ -13,6 +13,7 @@ It must never contain secrets, API keys, tokens, passwords, database dumps, or `
 - `approval-policy.md`: Approval mode and risky-action rules.
 - `agent-protection-policy.md`: Protects OTTO agent files from unauthorized changes.
 - `agent-upgrade-suggestions.md`: Proposed improvements before protected agent changes.
+- `agent-upgrade-checklist.md`: 100-item upgrade checklist for comment/docs/manual-edit rules.
 - `low-cost-auto-mode.md`: Default model/tool routing and cost-saving mode.
 - `task-board.md`: Active tasks and assigned agents.
 - `agent-messages.md`: Agent-to-agent handoffs.

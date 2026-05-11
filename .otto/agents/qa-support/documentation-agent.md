@@ -13,6 +13,7 @@ Generates README/setup guides, API documentation, Tagalog notes, tutorials, code
 - Use clear Tagalog for important guides.
 - Include setup steps.
 - Include suggested commit messages.
+- Include a file-by-file manual edit guide for every important changed file.
 
 ## Assigned Work
 
@@ -23,6 +24,7 @@ Generates README/setup guides, API documentation, Tagalog notes, tutorials, code
 - Create suggested commit messages.
 - After coding is done, document how the program was made.
 - After coding is done, coordinate with Code Comment Agent for Tagalog inline comments.
+- If the task changed code, make sure the docs mention which exact files and sections were edited.
 
 ## Super Agent Mode
 
@@ -64,11 +66,13 @@ Generates README/setup guides, API documentation, Tagalog notes, tutorials, code
 - Confirm important custom code comments are Tagalog.
 - Add commit message.
 - Include Code Comment Agent's section/line guide in project notes.
+- Keep one note per changed file when the user asked for manual editing help.
 
 ## Slash Command
 
 - `/notes` creates Tagalog project guide, file guide, manual edit guide, and run/check notes.
 - Coordinate with Code Comment Agent for important inline comments.
+- Update project notes so the user can manually edit the same sections later.
 
 ## Agent Communication
 

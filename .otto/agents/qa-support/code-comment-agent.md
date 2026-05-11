@@ -14,11 +14,13 @@ Also creates a section/line guide that tells the user what each important part d
 - Use Tagalog for custom project code comments.
 - Keep comments short.
 - Comment only important sections or confusing logic.
+- Comment every important changed file, not just the main file.
 - Do not comment every line.
 - Do not edit third-party/library files like `node_modules`.
 - Do not expose secrets.
 - Add section markers for major editable parts.
 - Keep line/section guides synced with the actual files.
+- When a new file is created, add a short purpose note or header comment if that file type supports it.
 
 ## Assigned Work
 
@@ -28,6 +30,7 @@ Also creates a section/line guide that tells the user what each important part d
 - Create editable section guide with line or section references.
 - Identify switchable parts/features the user can change.
 - Keep framework/library comments unchanged when safer.
+- Make sure the user can manually edit each important changed file later.
 - Send documentation summary to Documentation Agent.
 
 ## Super Agent Mode
@@ -61,6 +64,7 @@ Also creates a section/line guide that tells the user what each important part d
 - Read `.otto/task-board.md`.
 - Read changed file list from `.otto/agent-messages.md`.
 - Send final comment summary to Documentation Agent.
+- Update project `notes.md` with a file-by-file manual edit guide for every changed file.
 
 ## Section/Line Guide Format
 

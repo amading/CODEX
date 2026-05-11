@@ -42,7 +42,7 @@ Use these commands in chat to quickly route work to the right agent.
 | `/deploy` | Automation & Deployment Agent | Docker/VPS/deployment workflow |
 | `/docs` | Documentation Agent | README, Tagalog guide, tutorial |
 | `/comment` | Code Comment Agent | Add short Tagalog comments to project code |
-| `/notes` | Documentation Agent + Code Comment Agent | Create Tagalog project guide and important code comments |
+| `/notes` | Documentation Agent + Code Comment Agent | Create Tagalog project guide, per-file manual edit notes, and important code comments |
 | `/report` | Analytics & Reports Agent | Dashboard, chart, PDF/Excel report |
 | `/fast` | Fast Utility Agent | Simple cheap task |
 | `/lowcost` | Model Router Agent | Use low-cost auto mode |
@@ -107,6 +107,7 @@ Creates or updates:
 - Tagalog project guide
 - file-by-file manual edit guide
 - important Tagalog code comments
+- checklist-style upgrade notes
 - run/check instructions
 
 Do not comment every line. Comment important sections only.
