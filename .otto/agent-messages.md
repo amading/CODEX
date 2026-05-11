@@ -37,6 +37,22 @@ Message: Shared message bus, blocker escalation, and reporter flow are now activ
 Next Action: Continue normal task routing with new protocol fields.
 ```
 
+### 2026-05-11
+
+```text
+Date: 2026-05-11
+Message ID: MSG-2026-05-11-003
+From: Master Orchestrator Agent
+To: All Agents
+Topic: Comment and Manual Edit Workflow Update
+Status: resolved
+Priority: high
+Needs: none
+Message: New instructions require short comments in each important changed file and a file-by-file manual edit guide in project notes.
+Next Action: Follow the new checklist and keep the active project aligned with current repo work.
+Guide Notes: Update notes.md, tasks.md, and decisions.md whenever code behavior changes.
+```
+
 ```text
 Date: 2026-05-10
 Message ID: MSG-2026-05-10-002

@@ -12,7 +12,7 @@ Primary Agent: Master Orchestrator Agent
 
 Support Agents: Project Creator Agent, UI/UX Agent, Code Comment Agent, Auto Run Agent
 
-Active Project: tic-toc-tips
+Active Project: CODEX
 
 ## Notes
 
@@ -20,4 +20,5 @@ Active Project: tic-toc-tips
 - Keep updates short.
 - Agents should write guide notes as they work so the next agent can continue safely.
 - Record the active project folder before making edits.
+- Keep the active project aligned with the current repo work.
 - Do not store secrets.

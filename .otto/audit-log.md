@@ -3,6 +3,10 @@
 ## 2026-05-11
 
 - Added workspace-level project-note guidance so agents treat the outer root as the scope source and not only the nested app folder.
+- Added a 100-item OTTO agent upgrade checklist for comments, manual edit guides, validation, safety, and handoff discipline.
+- Strengthened AGENTS instructions so custom code changes require short inline comments and file-by-file edit notes.
+- Expanded the code-comment and documentation workflows so every important changed file gets a manual-edit guide.
+- Added a reusable project template note section for manual edit guidance.
 
 ## 2026-05-09
 
