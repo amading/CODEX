@@ -19,6 +19,7 @@ Use [EXPERT_MODE.md](EXPERT_MODE.md) as the global expert rules for all agents.
 - [Project Creator Agent](core-system/project-creator-agent.md)
 - [Project Upgrade Agent](core-system/project-upgrade-agent.md)
 - [Project Lock Agent](core-system/project-lock-agent.md)
+- [Project Map Agent](core-system/project-map-agent.md)
 
 ## Backend
 

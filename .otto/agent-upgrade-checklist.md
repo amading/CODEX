@@ -1,198 +1,271 @@
-# OTTO Agent Upgrade Checklist
+# OTTO Agent Upgrade Checklist — v2.0
 
 Use this list when upgrading agents, project workflows, or documentation rules.
+Every item is a pass/fail gate. Do not mark a section done if any item is unchecked.
+Reference: [agent-routing.md](agent-routing.md) | [model-routing.json](model-routing.json)
 
-## Core Project Control
+---
 
-1. Auto-detect the active project root.
-2. Lock the active project before edits.
-3. Refuse edits outside the active project.
-4. Confirm the requested project name before switching.
-5. Track the active project in a shared file.
-6. Keep workspace root rules visible.
-7. Treat sibling top-level folders as separate projects.
-8. Never assume a nested app folder is the only project.
-9. Use explicit file paths in notes.
-10. Keep cross-project work rare and intentional.
+## Section 1 — Project Control & Scope
 
-## Commenting
+1. [ ] Auto-detect the active project root before any file action.
+2. [ ] Read root `AGENTS.md` to confirm the active project folder.
+3. [ ] Lock the active project before any edit begins.
+4. [ ] Refuse all edits outside the active project folder (Permission Guard enforces).
+5. [ ] Confirm the project name explicitly before switching projects.
+6. [ ] Track the active project in a shared state file, not in memory alone.
+7. [ ] Treat every sibling top-level folder as a separate, independent project.
+8. [ ] Never assume a nested sub-folder is the project root — confirm from AGENTS.md.
+9. [ ] Use full absolute paths in all notes, logs, and handoff blocks.
+10. [ ] Keep cross-project work rare, logged, and explicitly user-approved.
+11. [ ] Never write to `CODEX/` folders from within a project task.
+12. [ ] Confirm that CODEX agent files are not project-specific before editing them.
 
-11. Add short comments to every important changed file.
-12. Add a short purpose note to every new custom file.
-13. Prefer Tagalog for important custom-code comments.
-14. Keep comments short.
-15. Keep comments practical for manual editing.
-16. Comment only the important sections, not every line.
-17. Remove noisy or duplicated comments.
-18. Keep third-party comments untouched when safer.
-19. Add section markers for major editable blocks.
-20. Add clear edit hints near fragile logic.
+---
 
-## Manual Editing Notes
+## Section 2 — Agent Profile & Model Selection
 
-21. Write a file-by-file manual edit guide.
-22. Include section or line hints in the guide.
-23. Include what each file does.
-24. Include what a human can safely change.
-25. Include what should not be changed.
-26. Include dependency notes.
-27. Include safe override points.
-28. Include required config names only, not secrets.
-29. Include fallback behavior notes.
-30. Include reset and initialization notes.
+13. [ ] Every agent file has a `Claude Model:` field populated.
+14. [ ] `cheap` agents use `claude-haiku-4-5` only.
+15. [ ] `standard` agents use `claude-sonnet-4-6` only.
+16. [ ] `strong` agents use `claude-opus-4-7` only.
+17. [ ] `deep` agents use `claude-opus-4-7` only.
+18. [ ] `visual` agents use `claude-sonnet-4-6` only.
+19. [ ] No security, database design, or architecture task uses a cheap model.
+20. [ ] Model escalation includes a one-line justification logged in the handoff block.
+21. [ ] Task length alone is never a reason to escalate — escalate only when capability is the bottleneck.
+22. [ ] `model-routing.json` matches the model fields in all agent files.
+23. [ ] `low-cost-auto-mode.md` is in sync with current model IDs and routing rules.
+24. [ ] Model IDs are verified as valid before being added to any routing config.
 
-## Project Notes
+---
 
-31. Update `notes.md` after important changes.
-32. Update `tasks.md` when work is pending.
-33. Update `decisions.md` when a design choice matters.
-34. Update `project.md` when the project scope changes.
-35. Keep notes short and factual.
-36. Keep notes current.
-37. Archive stale notes.
-38. Keep active notes visible.
-39. Keep one project folder per project.
-40. Do not mix project histories.
+## Section 3 — Routing Compliance
 
-## Testing And Validation
+25. [ ] Master Orchestrator reads the Routing Decision Tree before assigning agents.
+26. [ ] Task Manager breaks tasks into subtasks before Coding or SQL agents start.
+27. [ ] Planning (strong) runs before any Coding task involving new modules, tables, or APIs.
+28. [ ] Guard agents (Database Guard, ENV Protection, Secret Guard, Permission Guard) are always active.
+29. [ ] Guard agents run in parallel with every task — never sequentially after.
+30. [ ] Parallel routing is used when agents are fully independent.
+31. [ ] Sequential routing is used when output of one agent feeds the next.
+32. [ ] No two agents write to the same file at the same time.
+33. [ ] Escalation chain is followed: cheap → standard → strong → deep → USER.
+34. [ ] Retry Prevention fires after two identical failed approaches — not before, not after.
+35. [ ] Routing loops (same agent re-invoked 3x) trigger Master Orchestrator break + user notification.
+36. [ ] Summarizer condenses any agent output over 500 lines before passing to the next agent.
 
-41. Validate syntax after edits.
-42. Validate PHP when PHP changes.
-43. Validate JavaScript when JS changes.
-44. Validate HTML and CSS when UI changes.
-45. Run safe checks automatically when possible.
-46. Run small checks first.
-47. Stop on failing checks.
-48. Explain the failure plainly.
-49. Record what was tested.
-50. Record what could not be tested.
+---
 
-## Safety
+## Section 4 — Security Standards
 
-51. Do not expose secrets.
-52. Do not print `.env` contents.
-53. Do not print API keys.
-54. Do not print passwords.
-55. Do not print tokens.
-56. Do not print private keys.
-57. Do not run destructive database commands without approval.
-58. Avoid risky deletes and truncates.
-59. Protect generated files from accidental overwrite.
-60. Keep rollback notes when risk exists.
+37. [ ] Security Agent checks OWASP Top 10 on every backend code review.
+38. [ ] Every security finding has a severity: `critical / high / medium / low / info`.
+39. [ ] Critical findings BLOCK progress — task does not continue until resolved.
+40. [ ] Every public API endpoint has: input validation, auth check, rate limit note, safe error message.
+41. [ ] SQL injection, XSS, CSRF, and path traversal checked on every backend review.
+42. [ ] Security Agent runs before every deployment and every database write operation.
+43. [ ] Security Agent escalates to strong/deep model when uncertain — never guesses.
+44. [ ] Security findings are recorded in `audit-log.md` with severity and resolution status.
+45. [ ] No security finding is softened or omitted — name it directly at its true severity.
+46. [ ] Deployment configs use environment variable references only — zero hardcoded secrets.
+47. [ ] `.env` files are never read, printed, or passed to any agent output.
+48. [ ] API keys, tokens, passwords, and private keys never appear in agent output.
+49. [ ] Every security block action is logged to `CODEX/.otto/memory/security-log.md`.
+50. [ ] No guard agent (Database Guard, ENV Protection, Secret Guard) is bypassed for any reason.
 
-## Handoffs
+---
 
-61. Write what changed.
-62. Write why it changed.
-63. Write what remains pending.
-64. Write the next safe step.
-65. Write the files touched.
-66. Write the sections touched.
-67. Write the functions touched.
-68. Write the buttons or controls touched.
-69. Write the API routes touched.
-70. Write the database tables touched.
+## Section 5 — Database Safety
 
-## Workflow Quality
+51. [ ] Database Readonly agent is used for all SELECT/SHOW/DESCRIBE tasks.
+52. [ ] Data Validator runs before any database write or schema change.
+53. [ ] Database Guard intercepts DELETE/DROP/TRUNCATE before SQL agent executes them.
+54. [ ] Unsafe UPDATE (missing WHERE clause) is blocked by Database Guard.
+55. [ ] Every migration includes rollback SQL alongside the forward SQL.
+56. [ ] Schema changes go through Planning (strong) before SQL agent executes them.
+57. [ ] Database connection failures trigger one retry then wait for user confirmation.
+58. [ ] No destructive DB command runs without explicit user approval in the current session.
+59. [ ] Database tables touched are listed in every handoff block and dev summary.
+60. [ ] Database Readonly agent is never upgraded to write access within a task.
 
-71. Prefer small targeted fixes.
-72. Preserve existing project patterns.
-73. Avoid broad refactors unless needed.
-74. Keep architecture modular.
-75. Keep output clean and easy to scan.
-76. Keep agent instructions simple enough to follow.
-77. Keep router files and templates aligned.
-78. Keep project files and notes aligned.
-79. Keep manual edit instructions consistent.
-80. Keep comments and docs synchronized.
+---
 
-## UI And App Behavior
+## Section 6 — Commenting & Code Clarity
 
-81. Mark button wiring clearly.
-82. Mark save flow clearly.
-83. Mark capture flow clearly.
-84. Mark upload flow clearly.
-85. Mark fallback flow clearly.
-86. Mark error flow clearly.
-87. Mark success flow clearly.
-88. Mark init/reset flow clearly.
-89. Mark parent-child message flow clearly.
-90. Mark browser/server boundary clearly.
+61. [ ] Every important changed file has a short comment explaining what changed and why.
+62. [ ] Every new custom file has a short purpose note at the top.
+63. [ ] Important custom-code comments are written in Tagalog.
+64. [ ] Comments are short — one line or less unless the logic is non-obvious.
+65. [ ] Comments are practical for manual editing — not for explaining basic code.
+66. [ ] Only important sections are commented, not every line.
+67. [ ] Noisy or duplicated comments are removed.
+68. [ ] Third-party library comments are left untouched.
+69. [ ] Section markers are added for major editable blocks.
+70. [ ] Clear edit hints are placed near fragile or non-obvious logic.
 
-## Finalization
+---
 
-91. Include Tagalog notes in final output.
-92. Include a commit message suggestion.
-93. Include a file-by-file guide.
-94. Include testing results.
-95. Include security notes.
-96. Include manual-edit tips.
-97. Include rollback hints when relevant.
-98. Include next steps if anything remains.
-99. Confirm the active project one last time.
-100. Do not say finished until notes and comments are updated.
+## Section 7 — Manual Editing Notes
 
-## Claude Model Support
+71. [ ] Every completed task includes a file-by-file manual edit guide.
+72. [ ] Guide includes section or line hints for each file.
+73. [ ] Guide explains what each file does in plain language.
+74. [ ] Guide specifies what a human can safely change.
+75. [ ] Guide specifies what must not be changed.
+76. [ ] Guide includes dependency notes (what breaks if X is changed).
+77. [ ] Guide includes safe override or extension points.
+78. [ ] Guide includes required config variable names — never values or secrets.
+79. [ ] Guide includes fallback behavior notes.
+80. [ ] Guide includes reset and initialization notes where relevant.
 
-101. Every agent file must have a `Claude Model:` field.
-102. Use `claude-haiku-4-5` for cheap/routing/docs agents.
-103. Use `claude-sonnet-4-6` for standard and strong agents.
-104. Use `claude-opus-4-7` for deep/critical agents only.
-105. Never use a cheap model for security review, database design, or architecture.
-106. Model Router Agent must justify escalation in one short reason.
-107. Do not escalate just because the task is long — escalate only when capability is the bottleneck.
-108. Keep `model-routing.json` and `low-cost-auto-mode.md` in sync with agent model fields.
-109. Update `low-cost-auto-mode.md` when new Claude model IDs are released.
-110. Confirm Claude model ID is valid before using it in routing.
+---
 
-## OpenCode Free Backend Support
+## Section 8 — Project Notes & Documentation
 
-111. Every backend agent must have an `OpenCode:` field stating its free task.
-112. Prefer OpenCode for backend file/code generation before using a paid model.
-113. Use OpenCode for: PHP, JS, Python, SQL file generation, route and controller files.
-114. Do not use OpenCode for visual/OCR/screenshot tasks — use Claude Sonnet visual instead.
-115. Install OpenCode once with: `npm install -g opencode-ai`
-116. Keep `model-routing.json` opencode entries updated when OpenCode versions change.
-117. When OpenCode is unavailable, fall back to Claude Sonnet for backend tasks.
-118. Record OpenCode usage in `audit-log.md` for cost tracking.
-119. Do not use OpenCode for high-risk security reviews — use Security Agent + Claude Sonnet.
-120. Keep OpenCode task scope narrow: file generation, terminal commands, route writing.
+81. [ ] `notes.md` updated after every important change.
+82. [ ] `tasks.md` updated when work is pending or newly completed.
+83. [ ] `decisions.md` updated when a design choice is made.
+84. [ ] `project.md` updated when project scope changes.
+85. [ ] Notes are short, factual, and dated.
+86. [ ] Stale notes are archived — not left in active note files.
+87. [ ] Active notes are visible at the top of each notes file.
+88. [ ] One project folder per project — histories are never mixed.
+89. [ ] Documentation Agent runs after every completed feature.
+90. [ ] Tagalog Notes Agent runs after every custom business logic change.
 
-## Reasoning And Self-Validation
+---
 
-121. Every agent must think step by step before acting.
-122. Every agent must ask one short clarifying question when the request is ambiguous.
-123. Every agent must validate its output against the original request before finishing.
-124. Never mark a task done without showing file-level or output-level evidence.
-125. Use the 5 Whys method for root cause analysis in Debug & QA Agent.
-126. Check adjacent code for the same class of bug after every fix.
-127. Apply the Confidence Gate (High/Medium/Low) before Final Review Agent approves done.
-128. Never say done if Confidence Gate is Low — return to Debug & QA Agent.
-129. Reproduce a bug before fixing it — never fix what you cannot confirm exists.
-130. Self-check output: does it answer the original question? Are all required parts present?
+## Section 9 — Testing & Validation
 
-## Security Standards
+91. [ ] Syntax validated after every edit.
+92. [ ] PHP validated after every PHP change.
+93. [ ] JavaScript validated after every JS change.
+94. [ ] HTML and CSS validated after every UI change.
+95. [ ] Safe checks run automatically when possible.
+96. [ ] Small checks run before large checks.
+97. [ ] Task stops immediately on any failing check — never continues past a failure.
+98. [ ] Failure is explained in plain language — not just an error code.
+99. [ ] What was tested is recorded in the dev summary.
+100. [ ] What could not be tested is recorded and flagged for manual verification.
+101. [ ] Bugs are reproduced before they are fixed — never fix what cannot be confirmed.
+102. [ ] Adjacent code checked for the same class of bug after every fix.
 
-131. Security Agent must check OWASP Top 10 on every code review.
-132. Every security finding must have a severity rating: critical / high / medium / low / info.
-133. Block progress on critical findings — do not continue until resolved.
-134. Every public API endpoint must have: input validation, auth check, rate limit note, safe error message.
-135. Never soften a critical security finding — name it directly.
-136. Deployment configs must use environment variable references only — no hardcoded secrets.
-137. Run Security Agent before every deployment and database write operation.
-138. SQL injection, XSS, CSRF, and path traversal must be checked on every backend review.
-139. Security Agent must escalate to strong/deep Claude model when uncertain.
-140. Record security findings in `audit-log.md` with severity and resolution.
+---
 
-## Mistake Prevention
+## Section 10 — Reasoning & Self-Validation
 
-141. Use `mistakes.md` format: Mistake → Cause → Prevention Rule.
-142. Add every repeated mistake to `mistakes.md` immediately.
-143. Increment Pattern Watch count when the same mistake appears again.
-144. Escalate to Agent Upgrade Advisor when a mistake reaches count = 3.
-145. Memory & Learning Agent must update `mistakes.md` after every important error.
-146. Never close a blocker message without updating its status to `resolved` or `closed`.
-147. Use REQ-### IDs for every feature request before building.
-148. Never build a feature without a REQ-### ID — completeness cannot be verified without it.
-149. Every migration must include rollback SQL alongside forward SQL.
-150. Every package install must check existing dependencies first to avoid duplication.
+103. [ ] Every agent thinks step by step before acting — no immediate output on complex tasks.
+104. [ ] Every agent asks one short clarifying question when the request is ambiguous.
+105. [ ] Every agent validates output against the original request before finishing.
+106. [ ] No task is marked done without file-level or output-level evidence.
+107. [ ] Debug & QA Agent uses 5 Whys method for root cause analysis.
+108. [ ] Confidence Gate applied before Final Review approves done: High / Medium / Low.
+109. [ ] Low confidence = return to Debug & QA — never mark done.
+110. [ ] Self-check: does output answer the original question? Are all required parts present?
+111. [ ] Agent does not produce output that contradicts a guard agent's block.
+112. [ ] Agent does not skip steps to save tokens — correctness over speed.
+
+---
+
+## Section 11 — Inter-Agent Handoff Protocol
+
+113. [ ] Every handoff includes the structured HANDOFF BLOCK (see agent-routing.md §7).
+114. [ ] Handoff block fields populated: `from`, `to`, `task_summary`, `files_touched`, `decisions_made`, `open_questions`, `risk_flags`.
+115. [ ] Receiving agent reads the handoff block before starting any work.
+116. [ ] Receiving agent requests a handoff block if one is missing — does not start without it.
+117. [ ] No context is re-derived when a handoff block already contains it.
+118. [ ] Risk flags in the handoff block trigger Security Agent review before the next agent proceeds.
+119. [ ] Open questions in the handoff block are resolved before the task is closed.
+120. [ ] Handoff blocks are stored in the task log, not discarded after use.
+
+---
+
+## Section 12 — Memory & Learning
+
+121. [ ] Memory Agent writes an entry after every architectural decision.
+122. [ ] Memory Agent writes an entry after every bug fix with a non-obvious cause.
+123. [ ] Memory Agent writes an entry after every security finding.
+124. [ ] `mistakes.md` format: `Mistake → Cause → Prevention Rule`.
+125. [ ] Every repeated mistake is added to `mistakes.md` immediately.
+126. [ ] Pattern Watch count incremented when the same mistake appears again.
+127. [ ] Mistakes reaching count = 3 escalate to Agent Upgrade Advisor.
+128. [ ] No blocker message is closed without updating status to `resolved` or `closed`.
+129. [ ] Memory write failures are logged to console output and retried at end of task.
+130. [ ] Memory entries are appended — never overwrite existing entries.
+
+---
+
+## Section 13 — Credit & Cost Optimization
+
+131. [ ] Cheapest sufficient agent profile used for every task.
+132. [ ] Guard agents never upgraded beyond cheap — they are always Haiku.
+133. [ ] Orchestrator and Task Manager not invoked for trivial single-step tasks.
+134. [ ] Summarizer runs after any agent output over 500 lines.
+135. [ ] No re-routing of a completed task just to reformat output.
+136. [ ] OpenCode used for backend file/code generation before paid model where available.
+137. [ ] OpenCode not used for visual, OCR, or screenshot tasks.
+138. [ ] OpenCode not used for high-risk security reviews.
+139. [ ] OpenCode usage recorded in `audit-log.md` for cost tracking.
+140. [ ] OpenCode fallback to Sonnet standard when OpenCode is unavailable.
+
+---
+
+## Section 14 — UI & App Behavior Documentation
+
+141. [ ] Button wiring documented clearly in comments and notes.
+142. [ ] Save flow documented with file path and function name.
+143. [ ] Capture flow documented with file path and function name.
+144. [ ] Upload flow documented with file path and function name.
+145. [ ] Fallback flow documented — what happens when primary path fails.
+146. [ ] Error flow documented — what the user sees and what is logged.
+147. [ ] Success flow documented — what the user sees and what is written.
+148. [ ] Init/reset flow documented — what state is cleared and when.
+149. [ ] Parent-child message flow documented — event names and payload shape.
+150. [ ] Browser/server boundary marked clearly — what runs client-side vs server-side.
+
+---
+
+## Section 15 — Feature Request Tracking
+
+151. [ ] Every feature request has a `REQ-###` ID before work begins.
+152. [ ] No feature is built without a `REQ-###` ID — completeness cannot be verified without one.
+153. [ ] `REQ-###` IDs are logged in `tasks.md` with status: `pending / in-progress / done`.
+154. [ ] Feature scope is confirmed against the `REQ-###` description before closing.
+155. [ ] Scope creep beyond the `REQ-###` is flagged — not silently implemented.
+
+---
+
+## Section 16 — Finalization Gate
+
+Every task must pass all items below before it is marked done.
+
+156. [ ] Tagalog notes written for all custom business logic.
+157. [ ] Git commit message suggestion included in dev summary.
+158. [ ] File-by-file manual edit guide included.
+159. [ ] Testing results recorded (what passed, what failed, what was skipped).
+160. [ ] Security review notes included.
+161. [ ] Manual-edit tips included for fragile sections.
+162. [ ] Rollback hints included when any risky change was made.
+163. [ ] Next steps listed if anything remains incomplete.
+164. [ ] Active project confirmed one last time before closing.
+165. [ ] `notes.md` and inline comments updated — task is NOT done until this is complete.
+166. [ ] Memory Agent has written all required entries.
+167. [ ] `audit-log.md` updated if any security finding or OpenCode usage occurred.
+168. [ ] All handoff open questions resolved or explicitly deferred with reason.
+169. [ ] Confidence Gate is High or Medium — Low confidence blocks done status.
+170. [ ] Dev summary output matches the standard 7-section format from agent-routing.md §10 Rule 7.
+
+---
+
+## Tagalog Notes
+
+Ang checklist na ito ay ginagamit para ma-verify na kumpleto ang bawat task bago sabihing "tapos na."
+Huwag mag-mark ng done kung may hindi pa na-check sa Section 16 — Finalization Gate.
+
+Ang lahat ng security at guard agents ay palaging aktibo — walang bypass kahit anong sitwasyon.
+Ang escalation chain ay: cheap → standard → strong → deep → USER.
+Huwag mag-escalate dahil mahaba lang ang task — escalate kapag kulang ang kakayahan ng modelo.
+
+Ang memory entries ay isinusulat pagkatapos ng bawat mahahalagang desisyon, bug fix, o security finding.
+Ang mga pagkakamali na paulit-ulit ay idinaragdag sa `mistakes.md` at binibilang para sa Pattern Watch.

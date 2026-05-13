@@ -39,6 +39,7 @@ The Master Orchestrator Agent uses this map to assign work.
 | Approval / permission check | Approval Gate Agent | Master Orchestrator, Security |
 | Change OTTO agent files | Approval Gate Agent | Master Orchestrator, Security |
 | Suggest agent upgrades | Agent Upgrade Advisor | Memory & Learning, Approval Gate |
+| Map / document full project structure | Project Map Agent | Documentation, Fullstack Development |
 
 ### Backend — Web
 | Request Type | Primary Agent | Support Agents |

@@ -91,4 +91,9 @@ No secrets, `.env` files, or database data were accessed.
 - Added Reporter Agent and wired it into routing/assignments.
 - Added initial activation messages in `.otto/agent-messages.md`.
 
+## 2026-05-13
+
+- Added `scripts/watch-otto.ps1` live terminal dashboard for task board, active project, agent messages, decision log, audit log, and mistakes.
+- Added `/watch` command routing to point users to the live OTTO dashboard.
+
 No secrets, `.env` files, or database data were accessed.

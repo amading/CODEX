@@ -92,6 +92,7 @@
     "Escalate only when the current profile is likely to fail or has failed once.",
     "Use deep only for high-risk or production-critical work.",
     "Use visual only when images, screenshots, UI inspection, or OCR are required.",
+    "Do not spend extra credits on unused profiles or duplicate routing.",
     "If the platform cannot switch models automatically, follow this file as manual routing guidance."
   ]
 }

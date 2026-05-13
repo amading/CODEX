@@ -24,7 +24,16 @@ Claude Code (claude-sonnet-4-6) — no OpenCode installation required.
 - `decision-log.md`: Important architectural and product decisions with reasons.
 - `commands.md`: All slash commands — `/post`, `/get`, `/run`, `/debug`, `/finalize`, and more.
 - `scripts/github-push.ps1`: One-command GitHub add/commit/push helper.
+- `scripts/watch-otto.ps1`: Live terminal dashboard for active project, task board, messages, audit log, and mistakes.
 - `projects/`: Per-project OTTO memory folders (project.md, tasks.md, decisions.md, notes.md).
+
+## Quick Terminal Watch
+
+Run this from the `CODEX` repo root to watch the live OTTO dashboard:
+
+```powershell
+.\.otto\scripts\watch-otto.ps1
+```
 - `finalization-workflow.md`: Step-by-step required checks and done-rule checklist before saying done.
 - `audit-log.md`: Chronological change and action log.
 - `mistakes.md`: Mistakes, lessons, and retry-prevention rules.

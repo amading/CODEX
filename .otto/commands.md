@@ -29,6 +29,7 @@ Use these commands in chat to quickly route work to the right agent.
 | `/debug` | Debug & QA Agent | Debug error/log/test failure |
 | `/runfix` | Run & Fix Agent | Run checks and fix project errors after approval |
 | `/terminal` | Terminal Runner Agent | Run approved terminal command |
+| `/watch` | Terminal Runner Agent | Open the live OTTO dashboard in terminal |
 | `/install` | Package Installer Agent | Install approved package |
 | `/test` | Run/Test Agent | Run tests/build/lint checks |
 | `/finalize` | Master Orchestrator Agent | Check project, fix issues, document how it was made |
