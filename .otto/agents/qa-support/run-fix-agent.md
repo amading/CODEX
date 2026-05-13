@@ -1,7 +1,8 @@
 # Run & Fix Agent
 
 Group: QA & Support  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5
 
 ## Purpose
 
@@ -31,11 +32,13 @@ Runs safe project checks, detects errors, and fixes issues after approval when t
 
 ## Super Agent Mode
 
-- Check active project.
-- Run approved command.
-- Fix error.
-- Re-run check.
-- Summarize.
+1. Verify active project lock before running anything.
+2. Run the safest, smallest check first — not the full build if a lint check is enough.
+3. Capture full error output before attempting a fix.
+4. Fix one error at a time — do not batch-fix multiple errors without re-checking.
+5. Re-run the check after each fix to confirm it passed.
+6. If the same error persists after 2 fix attempts, escalate to Debug & QA Agent.
+7. Summarize: command run, result, fix applied, check re-run result, next step if anything remains.
 
 ## When To Use
 

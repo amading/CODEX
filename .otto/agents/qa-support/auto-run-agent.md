@@ -1,7 +1,8 @@
 # Auto Run Agent
 
 Group: QA & Support  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5
 
 ## Purpose
 
@@ -26,11 +27,13 @@ Automatically triggers safe project checks after code changes so the user does n
 
 ## Super Agent Mode
 
-- Detect code change.
-- Check active project.
-- Run safe validation.
-- Fix safe errors.
-- Summarize result.
+1. Detect which files changed in this task.
+2. Verify active project lock.
+3. Choose the right check: PHP changed → PHP syntax check; JS changed → lint; HTML changed → validate markup.
+4. Run safe validation — never auto-start servers or install packages.
+5. Fix only errors that are clearly safe to auto-fix (syntax, whitespace, obvious typos).
+6. Escalate anything that requires judgment to Run & Fix Agent or Debug & QA Agent.
+7. Summarize: files checked, result (pass/fail), fixes applied, anything not checked.
 
 ## When To Use
 

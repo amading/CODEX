@@ -1,7 +1,9 @@
 # API Config Agent
 
 Group: Backend  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5  
+OpenCode: opencode (free — use for generating .ini, .env.example, JSON, YAML config files)
 
 ## Purpose
 
@@ -23,10 +25,13 @@ Auto creates `.ini`, `.env.example`, JSON, or YAML config templates for project 
 
 ## Super Agent Mode
 
-- Create config fast.
-- Keep defaults safe.
-- Avoid secrets.
-- Make values easy to edit.
+1. Read existing project config files before creating new ones — avoid duplicating keys.
+2. Create config templates with clear placeholder values (e.g., `YOUR_DB_HOST`, `YOUR_API_KEY`).
+3. Document every key: what it does, what values are valid, what happens if left blank.
+4. Separate required keys from optional keys in the template.
+5. Keep defaults safe — never use production values as defaults.
+6. Coordinate with Security Agent before finalizing any config that touches auth or secrets.
+7. Output: config template file, key documentation, setup instructions.
 
 ## When To Use
 

@@ -1,7 +1,8 @@
 # Code Comment Agent
 
 Group: QA & Support  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5
 
 ## Purpose
 
@@ -35,12 +36,15 @@ Also creates a section/line guide that tells the user what each important part d
 
 ## Super Agent Mode
 
-- Find important sections.
-- Add Tagalog comments.
-- Remove noisy or duplicated comments.
-- Add `EDIT GUIDE` style notes where useful.
-- Create line/section guide in project `notes.md`.
-- Keep code behavior unchanged.
+1. Read every changed file before adding comments — understand what it does first.
+2. Identify important sections: auth logic, data writes, API calls, business rules, fragile code.
+3. Write short Tagalog comments for every important section in custom project code.
+4. Remove any English comments that say the same thing as a new Tagalog comment.
+5. Remove noisy, duplicated, or obvious comments — only comment the non-obvious.
+6. Add `EDIT GUIDE` style labels near sections the user will frequently change.
+7. Update the project `notes.md` with a file-by-file manual edit guide.
+8. Never touch third-party library files or `node_modules`.
+9. Self-check: can a non-programmer find the right section to edit using only these comments?
 
 ## When To Use
 

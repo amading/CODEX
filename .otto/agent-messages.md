@@ -22,6 +22,34 @@ Guide Notes:
 
 ## Messages
 
+### 2026-05-13
+
+```text
+Date: 2026-05-13
+Message ID: MSG-2026-05-13-001
+From: Master Orchestrator Agent
+To: All Agents
+Topic: Claude Model Integration Complete
+Status: resolved
+Priority: high
+Needs: none
+Message: All 40 agents now have Claude Model fields. Claude Code (claude-sonnet-4-6) is the active AI runtime for this workspace. OpenCode is not required. Use model-routing.json for Claude model IDs: haiku-4-5 (cheap), sonnet-4-6 (standard/strong), opus-4-7 (deep).
+Next Action: All agents use Claude model IDs from now on when running in Claude Code.
+```
+
+```text
+Date: 2026-05-13
+Message ID: MSG-2026-05-13-002
+From: Master Orchestrator Agent
+To: All Agents
+Topic: Agent Strength Upgrade Applied
+Status: resolved
+Priority: high
+Needs: none
+Message: All 40 agents upgraded with: numbered Super Agent Mode steps, think-step-by-step rules, self-validation rules, stronger quality checklists. Security Agent now checks OWASP Top 10. Debug Agent uses 5 Whys. Database Agent requires rollback queries. Approval Gate uses risk rating scale (safe/low/medium/high/critical).
+Next Action: Follow upgraded Super Agent Mode steps for every task going forward.
+```
+
 ### 2026-05-10
 
 ```text

@@ -6,14 +6,14 @@ Use this compact agent list for low-cost, provider-flexible work across Codex, C
 
 Use `.otto/model-routing.json` as the source of truth for model profiles.
 
-| Profile | Use For | Codex/OpenAI | Cursor | Claude |
-| --- | --- | --- | --- | --- |
-| cheap | Simple edits, summaries, routing, docs, quick commands | GPT-5 mini | Auto / cheapest fast model | Claude Haiku |
-| standard | Normal coding, small features, tests, refactors | GPT-5 mini or GPT-5 when needed | Auto | Claude Sonnet |
-| strong | Backend, database, security, analytics, architecture, hard debugging | GPT-5 | Max / strongest coding mode | Claude Sonnet or Opus |
-| deep | High-risk architecture, security review, production incidents | GPT-5.5 when available, otherwise GPT-5 high reasoning | Max / strongest reasoning mode | Claude Opus |
-| visual | Screenshots, UI inspection, OCR, image understanding, visual design | GPT-4o or current visual-capable OpenAI model | Visual-capable model if available | Claude Sonnet visual |
-| tool | File generation, repo automation, local tooling | OpenCode / Codex tools | Cursor agent tools | Claude tool-use mode |
+| Profile | Use For | Codex/OpenAI | Cursor | Claude | OpenCode (Free) |
+| --- | --- | --- | --- | --- | --- |
+| cheap | Simple edits, summaries, routing, docs, quick commands | GPT-5 mini | Auto / cheapest fast model | Claude Haiku | Free local model |
+| standard | Normal coding, small features, tests, refactors | GPT-5 mini or GPT-5 when needed | Auto | Claude Sonnet | Free backend code generation |
+| strong | Backend, database, security, analytics, architecture, hard debugging | GPT-5 | Max / strongest coding mode | Claude Sonnet or Opus | **Preferred free backend tool** |
+| deep | High-risk architecture, security review, production incidents | GPT-5.5 high reasoning | Max / strongest reasoning mode | Claude Opus | Strongest model available |
+| visual | Screenshots, UI inspection, OCR, image understanding, visual design | GPT-4o | Visual-capable model | Claude Sonnet visual | Not recommended |
+| tool | File generation, repo automation, local tooling | codex-mini-latest | Cursor agent tools | Claude tool-use | **Primary free tool** |
 
 If a platform cannot switch models automatically, simulate the routing by using the cheapest available model and manually escalate only when needed.
 

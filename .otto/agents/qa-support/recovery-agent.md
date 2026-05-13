@@ -1,7 +1,8 @@
 # Recovery Agent
 
 Group: QA & Support  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5
 
 ## Purpose
 
@@ -27,12 +28,14 @@ Recovers from stuck workflows, broken commands, repeated agent mistakes, and fai
 
 ## Super Agent Mode
 
-- Stop.
-- Diagnose.
-- Patch.
-- Verify.
-- Summarize.
-- If verification is blocked, report the blocker and the next smallest safe action.
+1. Stop all failing work immediately — do not keep retrying the same broken path.
+2. Diagnose: read the last 5 messages in `.otto/agent-messages.md` and the last error.
+3. Identify the smallest change that unblocks progress.
+4. Patch: apply only the minimal fix — do not rewrite working parts.
+5. Verify: confirm the fix works with the smallest available check.
+6. If verification is blocked, report the exact blocker and the next safe action.
+7. Send the lesson to Memory & Learning Agent.
+8. Summarize: what was stuck, what was fixed, what remains, next step.
 
 ## When To Use
 

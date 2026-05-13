@@ -14,44 +14,58 @@
     "claude": {
       "signals": ["Claude", "Anthropic", "claude workspace"],
       "provider": "anthropic"
+    },
+    "opencode": {
+      "signals": ["OpenCode", "opencode", ".opencode", "opencode workspace"],
+      "provider": "opencode",
+      "cost": "free",
+      "use_for": "backend code generation, file creation, terminal commands, API routes, database files",
+      "install": "npm install -g opencode-ai",
+      "run": "opencode"
     }
   },
   "profiles": {
     "cheap": {
       "purpose": "Simple edits, summaries, routing, documentation, quick commands.",
-      "codex": "GPT-5 mini",
+      "codex": "GPT-5 mini (gpt-4o-mini)",
       "cursor": "Auto / cheapest fast model",
-      "claude": "Claude Haiku"
+      "claude": "Claude Haiku (claude-haiku-4-5)",
+      "opencode": "opencode free tier / local model (Ollama)"
     },
     "standard": {
       "purpose": "Normal coding, small features, tests, refactors.",
-      "codex": "GPT-5 mini or GPT-5 when needed",
+      "codex": "GPT-5 mini or GPT-5 when needed (gpt-4o-mini / gpt-4o)",
       "cursor": "Auto",
-      "claude": "Claude Sonnet"
+      "claude": "Claude Sonnet (claude-sonnet-4-6)",
+      "opencode": "opencode — free backend code generation and file writing"
     },
     "strong": {
       "purpose": "Complex backend, database, architecture, security, analytics, hard debugging.",
-      "codex": "GPT-5",
+      "codex": "GPT-5 (gpt-4o / gpt-4.1)",
       "cursor": "Max / strongest coding mode",
-      "claude": "Claude Sonnet or Opus"
+      "claude": "Claude Sonnet or Opus (claude-sonnet-4-6 / claude-opus-4-7)",
+      "opencode": "opencode — preferred free tool for backend file generation and API creation"
     },
     "deep": {
       "purpose": "Very high-risk architecture, security review, production incident analysis.",
-      "codex": "GPT-5.5 when available, otherwise GPT-5 high reasoning",
+      "codex": "GPT-5.5 high reasoning (o3 / gpt-4.1 reasoning)",
       "cursor": "Max / strongest reasoning mode",
-      "claude": "Claude Opus"
+      "claude": "Claude Opus (claude-opus-4-7)",
+      "opencode": "opencode with strongest available model for critical backend review"
     },
     "visual": {
       "purpose": "Screenshots, UI inspection, OCR, image understanding, visual design.",
-      "codex": "GPT-4o or current visual-capable OpenAI model",
+      "codex": "GPT-4o vision (gpt-4o)",
       "cursor": "Visual-capable model if available",
-      "claude": "Claude Sonnet visual"
+      "claude": "Claude Sonnet visual (claude-sonnet-4-6)",
+      "opencode": "not recommended for visual tasks — use Claude or Codex for OCR/screenshots"
     },
     "tool": {
       "purpose": "File generation, repository automation, local agent tooling.",
-      "codex": "OpenCode / Codex tools",
+      "codex": "OpenCode / Codex tools (codex-mini-latest)",
       "cursor": "Cursor agent tools",
-      "claude": "Claude tool-use mode"
+      "claude": "Claude tool-use mode (claude-sonnet-4-6)",
+      "opencode": "opencode — primary free tool for all file/code generation and terminal tasks"
     }
   },
   "taskRouting": {

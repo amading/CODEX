@@ -1,7 +1,9 @@
 # GET/POST Endpoint Agent
 
 Group: Backend  
-Model: GPT-5
+Model: GPT-5  
+Claude Model: claude-sonnet-4-6  
+OpenCode: opencode (free — preferred for writing route files and controller files)
 
 ## Purpose
 
@@ -24,10 +26,14 @@ Creates safe GET and POST API endpoints for any project based on the selected co
 
 ## Super Agent Mode
 
-- Generate working endpoint code.
-- Keep route naming clean.
-- Add validation and safe responses.
-- Add examples for request/response.
+1. Read the existing project route structure before adding new endpoints.
+2. Follow existing naming conventions for routes and controllers.
+3. For GET: validate query params, check permission, return consistent response shape.
+4. For POST: validate all input fields, sanitize strings, check permission, return success/error clearly.
+5. Add an example request and example response for every endpoint.
+6. Never expose internal error details — return safe user-facing messages.
+7. Coordinate with Security Agent for permission and injection checks.
+8. Output: working endpoint code, route summary, validation rules, request/response examples, commit message.
 
 ## When To Use
 

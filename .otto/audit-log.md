@@ -1,5 +1,22 @@
 # OTTO Audit Log
 
+## 2026-05-13
+
+- Added `Claude Model:` field to all 40 OTTO agent files — claude-haiku-4-5 for cheap agents, claude-sonnet-4-6 for strong agents. No existing content removed.
+- Updated `model-routing.json` with specific Claude model IDs: claude-haiku-4-5, claude-sonnet-4-6, claude-opus-4-7 in all profile entries.
+- Upgraded all 40 agent Super Agent Mode sections with numbered step-by-step reasoning protocols.
+- Added OWASP Top 10 checklist and severity rating (critical/high/medium/low) to Security Agent.
+- Added 5 Whys root cause protocol and adjacent-code check rule to Debug & QA Agent.
+- Added rollback-query requirement and N+1 detection to Database Agent.
+- Added mobile-first + WCAG accessibility rules to UI/UX Agent.
+- Added risk rating scale (safe/low/medium/high/critical) to Approval Gate Agent.
+- Added "think step by step" and "ask before guessing" universal rules to all core agents.
+- Added Super Agent Mode to agents that were missing it: Checklist, Gap Detection, Local Server, Package Installer, Terminal Runner, Run/Test, Requirement Trace, Project Creator, Project Lock, Project Upgrade, Agent Upgrade Advisor.
+- Upgraded system files: audit-log, approval-policy, finalization-workflow, low-cost-auto-mode, decision-log, agent-messages, task-board, project-generator-workflow, README.
+- Confirmed Claude Code works with all OTTO agents without requiring OpenCode installation.
+
+No secrets, `.env` files, or database data were accessed.
+
 ## 2026-05-11
 
 - Added workspace-level project-note guidance so agents treat the outer root as the scope source and not only the nested app folder.

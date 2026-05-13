@@ -1,7 +1,9 @@
 # Web Scraper / Backend Fetch Agent
 
 Group: Backend  
-Model: GPT-5
+Model: GPT-5  
+Claude Model: claude-sonnet-4-6  
+OpenCode: opencode (free — use for backend fetch scripts and API lookup code)
 
 ## Purpose
 
@@ -14,6 +16,10 @@ Fetches product hints from web/backend sources to help identify products using b
 - Return structured output with confidence and sources.
 - Never expose `.env`, API keys, or secrets.
 - If confidence is low, request manual review.
+- Always include a `confidence` score (high/medium/low) and at least one source URL.
+- If the result has no match, return null fields clearly rather than guessing.
+- Think step by step: lookup → normalize → score → return — do not skip steps.
+- If the source API is unavailable, report the blocker instead of returning empty data silently.
 
 ## Assigned Work
 

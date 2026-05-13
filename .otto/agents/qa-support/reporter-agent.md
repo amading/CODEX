@@ -1,7 +1,8 @@
 # Reporter Agent
 
 Group: QA & Support  
-Model: GPT-5 mini
+Model: GPT-5 mini  
+Claude Model: claude-haiku-4-5
 
 ## Purpose
 
@@ -19,10 +20,12 @@ Collects and reports blockers, repeated errors, and missing dependencies so the 
 
 ## When To Use
 
-- Command fails repeatedly.
+- Command fails repeatedly (2+ times).
 - Agent output loops or stalls.
 - Required tool/server/database is unavailable.
 - Task cannot continue without approval or missing configuration.
+- Any critical or high security finding that must stop work.
+- Any data-risk action that was attempted without approval.
 
 ## Message Template
 

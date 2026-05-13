@@ -14,6 +14,18 @@ Approval Mode: ask-first
 | `auto-approve-safe` | Auto approve safe docs/code/config generation, but still ask for risky actions |
 | `manual-only` | Always ask before any change |
 
+## Risk Rating
+
+Every action must be rated before deciding to ask:
+
+| Rating | Examples | Action |
+| --- | --- | --- |
+| safe | Reading files, docs, summaries | Auto-proceed |
+| low | Creating new project notes, config templates | Auto-proceed in `auto-approve-safe` mode |
+| medium | Creating/editing code files, new routes | Ask in `ask-first` mode |
+| high | Database writes, package installs, deployments | Always ask |
+| critical | DELETE/DROP, `.env` access, secret exposure, OTTO agent edits | Always ask + name exact blast radius |
+
 ## Always Ask Before
 
 - database writes

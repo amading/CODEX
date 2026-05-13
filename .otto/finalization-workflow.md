@@ -4,20 +4,20 @@ Use this before saying a project or feature is done.
 
 ## Required Final Flow
 
-1. Project Lock Agent confirms the active project.
-2. Requirement Trace Agent confirms requirements.
-3. Checklist Agent confirms checklist status.
-4. Gap Detection Agent finds missing parts.
-5. Run/Test Agent checks available tests, build, lint, or basic file validation.
-6. Auto Run Agent triggers safe checks after code changes.
-7. Debug & QA Agent fixes detected issues or reports blockers.
-8. Security Agent checks secrets, `.env`, database safety, and risky code.
-9. Completeness Agent checks all program parts.
-10. Final Review Agent performs senior final inspection.
-11. Code Comment Agent adds short Tagalog comments to every important changed custom code file and section.
-12. Output Control Agent keeps the final response short.
-13. Documentation Agent writes the project guide.
-14. Memory & Learning Agent logs mistakes and lessons.
+1. **Project Lock Agent** — confirm the active project path is correct.
+2. **Requirement Trace Agent** — list all REQ-### IDs and confirm their current status.
+3. **Checklist Agent** — confirm checklist status: ✅ done / ❌ missing / 🔒 blocked.
+4. **Gap Detection Agent** — find any requirement that is missing or incomplete; assign gaps to the right agent.
+5. **Run/Test Agent** — run all available checks: lint → typecheck → unit tests → build. Report pass/fail clearly.
+6. **Auto Run Agent** — trigger safe post-code-change checks automatically.
+7. **Debug & QA Agent** — fix all detected issues. Use 5 Whys for root cause. Do not mark fixed without proof.
+8. **Security Agent** — check OWASP Top 10, secrets, `.env`, database safety, risky code. Rate every finding. Block on critical.
+9. **Completeness Agent** — verify every requirement is implemented AND working, not just filed.
+10. **Final Review Agent** — senior inspection: request vs. actual files, residual risks, approve or block.
+11. **Code Comment Agent** — add short Tagalog inline comments to every changed custom code file.
+12. **Output Control Agent** — compress final response: remove repeated text, keep only useful result.
+13. **Documentation Agent** — write project guide: setup, run, test, deploy, Tagalog notes, commit message.
+14. **Memory & Learning Agent** — log any new lessons and prevention rules from this task.
 
 ## Documentation Required After Build
 
@@ -36,20 +36,29 @@ Documentation Agent must create or update project docs with:
 
 ## Done Rule
 
-Do not say `done` until:
+Do not say `done` until ALL of these are true:
 
-- active project checked
-- files checked
-- errors fixed or reported
-- security checked
-- completeness checked
-- final review passed
-- docs/Tagalog guide updated
-- important inline code comments are Tagalog and cover each changed file
-- project notes include editable section guide
-- project notes include file-by-file manual edit guidance
-- commit message created
+- [ ] Active project path confirmed by Project Lock Agent
+- [ ] All REQ-### requirements verified by Requirement Trace Agent
+- [ ] Checklist complete — no ❌ items remain
+- [ ] No critical or high gaps remain from Gap Detection Agent
+- [ ] All available tests/checks passed (lint, build, unit tests)
+- [ ] All errors fixed or reported with clear reason why they cannot be fixed
+- [ ] Security Agent confirmed no critical or high findings
+- [ ] Completeness Agent confirmed all requirements are working, not just coded
+- [ ] Final Review Agent approved (not just reviewed)
+- [ ] Tagalog inline comments added to every changed custom code file
+- [ ] Project notes include file-by-file manual edit guide
+- [ ] Documentation updated with setup, run, test, and commit message
+- [ ] Memory & Learning Agent recorded any new lessons
+
+## Confidence Gate
+
+Before saying done, the Final Review Agent must rate confidence: High / Medium / Low.
+- High: proceed and say done.
+- Medium: list remaining risks clearly, then say done.
+- Low: do not say done — return to Debug & QA Agent.
 
 ## If Checks Cannot Run
 
-Say why checks could not run and what manual check is needed.
+Name the exact check that could not run, the reason it could not run, and what manual verification the user can do instead.
