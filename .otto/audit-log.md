@@ -1,5 +1,22 @@
 # OTTO Audit Log
 
+## 2026-05-13 (Update 2)
+
+- Created new `agents/api/` folder with 7 dedicated API agents:
+  - `api-builder-agent.md` — builds REST/GraphQL APIs with route/controller/service separation
+  - `api-auth-agent.md` — JWT, OAuth2, API keys, sessions, RBAC
+  - `api-docs-agent.md` — OpenAPI/Swagger, Postman, API README, Tagalog guide
+  - `api-tester-agent.md` — automated tests: happy path, auth, validation, edge cases
+  - `api-integration-agent.md` — PayMongo, Stripe, Twilio, FCM, S3, Google OAuth, and more
+  - `api-gateway-agent.md` — versioning, rate limiting, CORS, health check
+  - `api-mock-agent.md` — mock server and fixture data for frontend/mobile dev
+  - `api-monitor-agent.md` — health checks, logging, uptime monitoring, error alerts
+- Added 8 new slash commands: /api-build, /api-auth, /api-docs, /api-test, /api-integrate, /api-gateway, /api-mock, /api-monitor
+- Updated ASSIGNMENTS.md with API group routing table and quick route reference
+- Updated agent-routing.md with API agents section
+- Updated EXPERT_MODE.md with 3 API expert flows: Full API Build, Third-Party Integration, Simple/Existing
+- All 7 API agents connected to: Security Agent, Debug & QA Agent, Database Agent, Documentation Agent, Code Comment Agent
+
 ## 2026-05-13
 
 - Added `Claude Model:` field to all 40 OTTO agent files — claude-haiku-4-5 for cheap agents, claude-sonnet-4-6 for strong agents. No existing content removed.

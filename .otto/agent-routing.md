@@ -59,6 +59,19 @@ If a platform cannot switch models automatically, simulate the routing by using 
 | Analytics & Reports Agent | strong | Dashboards, charts, PDF/Excel reports |
 | Fast Utility Agent | cheap | Cheap/simple quick tasks |
 
+## API Agents (agents/api/ — new dedicated folder)
+
+| Agent | Model | Purpose |
+| --- | --- | --- |
+| API Builder Agent | strong | Build REST/GraphQL APIs — routes, controllers, services, validation |
+| API Auth Agent | strong | JWT, OAuth2, API keys, sessions, RBAC — authentication and authorization |
+| API Docs Agent | cheap | OpenAPI/Swagger, Postman collections, API README, Tagalog guide |
+| API Tester Agent | strong | Automated tests for every endpoint — happy path, auth, validation, edge cases |
+| API Integration Agent | strong | Third-party integrations — PayMongo, Stripe, Twilio, FCM, S3, Google OAuth |
+| API Gateway Agent | cheap | Versioning, rate limiting, CORS, health check endpoint |
+| API Mock Agent | cheap | Mock server, fixture data, fake responses for frontend/mobile dev |
+| API Monitor Agent | cheap | Health checks, logging, uptime monitoring, error alerting |
+
 ## Hard Rules
 
 - Never access or expose `.env`.

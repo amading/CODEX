@@ -4,18 +4,19 @@ The Master Orchestrator Agent uses this map to assign work.
 
 ## Assignment Flow
 
-1. Master Orchestrator Agent reads the user request.
-2. Model Router Agent selects the cheapest useful model/tool.
-3. Approval Gate Agent checks if permission is required.
-4. Master Orchestrator Agent selects the correct agent.
-5. Assigned agent performs the work.
-6. Project Lock Agent confirms the active project.
-7. Run/Test Agent checks files/tests/build when available.
-8. Debug & QA Agent fixes or reports issues.
+1. Master Orchestrator Agent reads the user request and writes a one-line task summary.
+2. Model Router Agent selects the cheapest useful model/tool — justify any escalation.
+3. Approval Gate Agent rates risk (safe/low/medium/high/critical) and checks if permission is needed.
+4. Master Orchestrator Agent selects one primary agent from the map below.
+5. Assigned primary agent performs the work — think step by step before acting.
+6. Project Lock Agent confirms the active project before any file is touched.
+7. Run/Test Agent checks files/tests/build when available — stop on failure.
+8. Debug & QA Agent fixes or reports issues — use 5 Whys for root cause.
 9. Reporter Agent logs blockers/repeated failures and escalates when needed.
-10. Security Agent checks secrets, `.env`, permissions, and database safety.
-11. Documentation Agent writes how it was made, Tagalog guide, and commit message.
-12. Memory & Learning Agent records mistakes or lessons.
+10. Security Agent checks OWASP Top 10, secrets, `.env`, permissions, and database safety.
+11. Code Comment Agent adds Tagalog comments to all custom changed files.
+12. Documentation Agent writes how it was made, Tagalog guide, and commit message.
+13. Memory & Learning Agent records mistakes or lessons in `mistakes.md`.
 
 ## Strength Rules
 
@@ -27,77 +28,146 @@ The Master Orchestrator Agent uses this map to assign work.
 
 ## Agent Assignment Map
 
+### Project & System
 | Request Type | Primary Agent | Support Agents |
 | --- | --- | --- |
-| Select/create project | Master Orchestrator Agent | Memory & Learning, Documentation |
-| Model/tool routing | Model Router Agent | Master Orchestrator |
-| Create project | Project Creator Agent | Fullstack Development, UI/UX, Documentation |
-| Upgrade project | Project Upgrade Agent | Project Lock, Fullstack Development, Debug & QA |
-| Project lock/check | Project Lock Agent | Master Orchestrator |
-| Approval check | Approval Gate Agent | Master Orchestrator, Security |
-| Change OTTO agents | Approval Gate Agent | Master Orchestrator, Security |
+| Select / create project | Master Orchestrator Agent | Project Lock, Memory & Learning, Documentation |
+| Model / tool routing | Model Router Agent | Master Orchestrator |
+| Create new project | Project Creator Agent | Fullstack Development, UI/UX, Documentation |
+| Upgrade existing project | Project Upgrade Agent | Project Lock, Fullstack Development, Debug & QA |
+| Lock / check active project | Project Lock Agent | Master Orchestrator |
+| Approval / permission check | Approval Gate Agent | Master Orchestrator, Security |
+| Change OTTO agent files | Approval Gate Agent | Master Orchestrator, Security |
 | Suggest agent upgrades | Agent Upgrade Advisor | Memory & Learning, Approval Gate |
-| New app/project | Fullstack Development Agent | UI/UX, Database, Security, Documentation |
-| Backend code | Fullstack Development Agent | Database, Security, Debug & QA |
-| Frontend/UI | UI/UX Agent | Fullstack Development, Debug & QA, Documentation |
-| REST API | Fullstack Development Agent | Database, Security, Debug & QA |
-| Project config/INI | API Config Agent | Security, Documentation |
-| GET/POST endpoints | GET/POST Endpoint Agent | Database, Security, Debug & QA |
-| Database query/schema | Database Agent | Security, Debug & QA |
-| Create database/schema/migration | Database Creator Agent | Database, Security, Documentation |
+
+### Backend — Web
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| New web app / full project | Fullstack Development Agent | UI/UX, Database, Security, Debug & QA, Documentation |
+| Backend code (PHP, Python, Node, Go) | Fullstack Development Agent | Database, Security, Debug & QA |
+| REST API / JSON API | Fullstack Development Agent | Database, Security, Debug & QA |
+| GET / POST endpoints | GET/POST Endpoint Agent | Database, Security, Debug & QA |
+| Auth / login / JWT / session | Fullstack Development Agent | Security, Database, Debug & QA |
+| Project config / .ini / .env.example | API Config Agent | Security, Documentation |
+| Deployment / Docker / VPS / CI-CD | Automation & Deployment Agent | Security, Documentation |
 | Product web/backend lookup | Web Scraper / Backend Fetch Agent | RAG & Vision, Security, Documentation |
-| Deployment/Docker/VPS | Automation & Deployment Agent | Security, Documentation |
-| Auth/login/JWT | Fullstack Development Agent | Security, Database, Debug & QA |
-| Bug/error/log | Debug & QA Agent | Fullstack Development, Security |
+
+### Backend — Database
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| SQL query / schema review | Database Agent | Security, Debug & QA |
+| Create tables / migrations / seeds | Database Creator Agent | Database, Security, Documentation |
+| Database performance / indexing | Database Agent | Security, Debug & QA |
+
+### API (Dedicated API Agents — new folder: agents/api/)
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Build REST / GraphQL API | API Builder Agent | API Auth, API Docs, API Tester, Security, Database |
+| API authentication / JWT / OAuth | API Auth Agent | Security, Database, API Tester |
+| API documentation / Swagger / Postman | API Docs Agent | Documentation, API Builder |
+| API testing / endpoint tests | API Tester Agent | Debug & QA, Run/Test, Security |
+| Third-party integration (PayMongo, Stripe, SMS, FCM, S3) | API Integration Agent | Security, API Tester, API Docs |
+| API versioning / rate limiting / CORS / health check | API Gateway Agent | Security, Automation & Deployment |
+| Mock API server / fixture data | API Mock Agent | API Tester, UI/UX, Fullstack Development |
+| API health monitoring / logging / uptime | API Monitor Agent | Reporter, Debug & QA, Automation & Deployment |
+
+### Frontend — Web
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| UI screen / layout / component | UI/UX Agent | Fullstack Development, Debug & QA, Documentation |
+| Dashboard / chart / report / export | Analytics & Reports Agent | Database, UI/UX, Documentation |
+| Screenshot / OCR / document search | RAG & Vision Agent | Documentation, Debug & QA |
+
+### Mobile
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Flutter / Dart mobile app | Fullstack Development Agent | UI/UX, Database, Security, Debug & QA, Documentation |
+| Swift / SwiftUI iOS app | Fullstack Development Agent | UI/UX, Security, Debug & QA, Documentation |
+| Kotlin / Android app | Fullstack Development Agent | UI/UX, Database, Security, Debug & QA, Documentation |
+| React Native app | Fullstack Development Agent | UI/UX, Database, Security, Debug & QA, Documentation |
+| Mobile UI screens / components | UI/UX Agent | Fullstack Development, Debug & QA |
+| Mobile API integration | Fullstack Development Agent | Database, Security, Debug & QA |
+| Mobile push notifications | Fullstack Development Agent | Security, Debug & QA |
+| Mobile barcode / QR / camera | RAG & Vision Agent | Fullstack Development, Security |
+| Mobile local database (SQLite, Room, CoreData) | Database Agent | Fullstack Development, Security |
+| Mobile deployment (App Store / Play Store) | Automation & Deployment Agent | Security, Documentation |
+
+### Desktop
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Electron desktop app | Fullstack Development Agent | UI/UX, Security, Debug & QA, Documentation |
+| C# / .NET / MAUI desktop app | Fullstack Development Agent | Database, Security, Debug & QA, Documentation |
+
+### QA & Checks
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Bug / error / log / crash | Debug & QA Agent | Fullstack Development, Security |
 | Requirement tracking | Requirement Trace Agent | Checklist, Completeness |
 | Project checklist | Checklist Agent | Requirement Trace, Gap Detection |
-| Gap detection | Gap Detection Agent | Completeness, Coding/UI/Database agents |
+| Gap detection / missing features | Gap Detection Agent | Completeness, Coding/UI/Database agents |
 | Completeness review | Completeness Agent | Requirement Trace, Checklist, Gap Detection |
 | Final senior review | Final Review Agent | Completeness, QA, Security, Documentation |
 | Repeated output loop | Loop Guard Agent | Output Control, Recovery, Memory & Learning |
-| Noisy final answer | Output Control Agent | Master Orchestrator |
-| Stuck/broken workflow | Recovery Agent | Debug & QA, Memory & Learning |
-| Report blocker/repeated failure | Reporter Agent | Master Orchestrator, Recovery, Loop Guard |
-| Run/test/fix project | Run & Fix Agent | Approval Gate, Debug & QA, Security |
-| Run active project | Run & Fix Agent | Project Lock, Run/Test, Debug & QA, Approval Gate |
+| Noisy / long final answer | Output Control Agent | Master Orchestrator |
+| Stuck / broken workflow | Recovery Agent | Debug & QA, Memory & Learning |
+| Report blocker / repeated failure | Reporter Agent | Master Orchestrator, Recovery, Loop Guard |
+
+### Run & Terminal
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Run / test / fix project | Run & Fix Agent | Approval Gate, Debug & QA, Security |
 | Auto-check after code changes | Auto Run Agent | Run/Test, Run & Fix, Project Lock |
+| Run tests / build / lint | Run/Test Agent | Run & Fix, Debug & QA |
 | Terminal command | Terminal Runner Agent | Approval Gate, Run & Fix |
 | Install package | Package Installer Agent | Approval Gate, Security, Documentation |
-| Run tests/build/lint | Run/Test Agent | Run & Fix, Debug & QA |
-| Add Tagalog code comments | Code Comment Agent | Documentation, Debug & QA |
-| Dependency review | Dependency Audit Agent | Security, Package Installer |
 | Local dev server | Local Server Agent | Approval Gate, Run & Fix |
-| Screenshot/OCR/docs search | RAG & Vision Agent | Documentation, Debug & QA |
-| Dashboard/report/export | Analytics & Reports Agent | Database, UI/UX, Documentation |
-| README/tutorial/Tagalog guide | Documentation Agent | Memory & Learning |
-| Tagalog project notes/comments | Documentation Agent | Code Comment, Memory & Learning |
-| Small/simple task | Fast Utility Agent | Documentation if needed |
-| Mistake/retry prevention | Memory & Learning Agent | Debug & QA, Documentation |
+| Dependency audit | Dependency Audit Agent | Security, Package Installer |
+
+### Docs & Comments
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Tagalog code comments (any platform) | Code Comment Agent | Documentation, Debug & QA |
+| README / tutorial / Tagalog guide | Documentation Agent | Memory & Learning |
+| Tagalog project notes | Documentation Agent | Code Comment, Memory & Learning |
+
+### Utility
+| Request Type | Primary Agent | Support Agents |
+| --- | --- | --- |
+| Small / simple / quick task | Fast Utility Agent | Documentation if needed |
+| Mistake / retry prevention | Memory & Learning Agent | Debug & QA, Documentation |
 
 ## Cost Rule
 
 Use the cheap profile first when enough. Use the standard profile for normal coding and tests. Use the strong profile for complex backend, architecture, SQL, reports, security, or difficult debugging. Use the visual profile for screenshots, OCR, visual checking, or design-to-code work. Use the tool profile for file generation and automation.
 
-## Super Fast Rule
+## Quick Route Reference
 
-- Prefer one primary agent and only necessary support agents.
-- Do not call every agent for every task.
-- Do not create long reports unless requested.
-- For coding: Fullstack Development Agent + Debug & QA Agent + Security Agent.
-- For full project generation: Requirement Trace Agent + Checklist Agent + Coding/UI/Database agents + Gap Detection Agent + Completeness Agent + Final Review Agent.
-- For stuck/looping output: Loop Guard Agent + Output Control Agent + Recovery Agent.
-- For run/fix: Run & Fix Agent + Debug & QA Agent + Approval Gate Agent.
-- After code changes: Auto Run Agent + Run/Test Agent + Debug & QA Agent.
-- After coding: Code Comment Agent + Documentation Agent.
-- For terminal commands: Terminal Runner Agent + Approval Gate Agent.
-- For package installs: Package Installer Agent + Security Agent + Documentation Agent.
-- For project creation: Project Creator Agent + Fullstack Development Agent + Documentation Agent.
-- For project upgrades: Project Upgrade Agent + Project Lock Agent + Debug & QA Agent.
-- For config/API setup: API Config Agent + GET/POST Endpoint Agent + Security Agent.
-- For UI: UI/UX Agent + Debug & QA Agent.
-- For database: Database Agent + Security Agent.
-- For database creation: Database Creator Agent + Database Agent + Security Agent.
-- For docs: Documentation Agent + Memory & Learning Agent.
+| Task | Agent Chain |
+| --- | --- |
+| Web coding | Fullstack + Security + Debug & QA |
+| Mobile coding | Fullstack + UI/UX + Security + Debug & QA |
+| Full project (any platform) | Req Trace → Checklist → Fullstack/UI/DB → Gap → Completeness → Final Review |
+| Build REST / GraphQL API | API Builder → API Auth → API Docs → API Tester → Security |
+| API auth / JWT / OAuth2 | API Auth → Security → API Tester |
+| API docs / Swagger | API Docs → Documentation |
+| API testing | API Tester → Debug & QA |
+| Third-party integration | API Integration → Security → API Tester |
+| API versioning / rate limit | API Gateway → Security |
+| Mock API server | API Mock → API Tester |
+| API monitoring / health | API Monitor → Reporter |
+| Run / fix | Run & Fix + Debug & QA + Approval Gate |
+| After code changes | Auto Run → Run/Test → Debug & QA |
+| After coding done | Code Comment → Documentation |
+| Terminal command | Terminal Runner + Approval Gate |
+| Package install | Package Installer + Security + Documentation |
+| New project | Project Creator + Fullstack + Documentation |
+| Config / API setup | API Config + GET/POST Endpoint + Security |
+| UI / screens | UI/UX + Debug & QA |
+| Database | Database + Security |
+| Database creation | Database Creator + Database + Security |
+| Stuck / looping | Loop Guard → Output Control → Recovery |
+| Docs / notes | Documentation + Memory & Learning |
+| Mobile Tagalog comments | Code Comment (auto-detects Swift/Kotlin/Dart/RN) |
 
 ## Strong Defaults
 

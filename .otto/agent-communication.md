@@ -76,12 +76,24 @@ Needs values (comma-separated):
 
 ## Rules
 
-- Keep messages short.
-- Stop repeated/looping messages.
-- Do not store secrets.
-- Do not paste `.env` contents.
-- Do not store API keys, tokens, or passwords.
-- Use this only for useful project memory.
-- If an error repeats twice, escalate to `From: Reporter Agent` and `To: Master Orchestrator Agent`.
-- Include the next action whenever you create a blocker.
-- Use one message per issue instead of piling unrelated issues into one note.
+- Keep messages short — one clear purpose per message.
+- Stop repeated/looping messages — Loop Guard Agent handles repeats.
+- Do not store secrets, `.env` contents, API keys, tokens, or passwords.
+- Use this only for useful project memory — not for internal thinking.
+- If an error repeats twice: escalate to Reporter Agent → Master Orchestrator Agent immediately.
+- Include the next action whenever you create a blocker message.
+- Use one message per issue — do not pile unrelated issues into one note.
+- Always include `Model Used:` when the model choice affected the result.
+- When using OpenCode for backend work, set `Needs: opencode_task` in the message.
+- When escalating to a stronger model, set `Needs: model_escalation` and state the reason.
+- When a mistake is recorded, set `Needs: mistake_logged` so Memory & Learning Agent is notified.
+- Close resolved blockers — update status to `resolved` or `closed` when done.
+
+## Before Acting Protocol
+
+Every agent must do this before starting any task:
+
+1. Read `.otto/active-project.md` — confirm the correct project.
+2. Read the last 5 messages in `.otto/agent-messages.md` — check for blockers or context.
+3. Confirm the task is within the active project scope.
+4. If unclear: ask one short clarifying question before acting.

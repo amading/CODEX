@@ -46,6 +46,14 @@ Use these commands in chat to quickly route work to the right agent.
 | `/report` | Analytics & Reports Agent | Dashboard, chart, PDF/Excel report |
 | `/fast` | Fast Utility Agent | Simple cheap task |
 | `/lowcost` | Model Router Agent | Use low-cost auto mode |
+| `/api-build` | API Builder Agent | Build REST/GraphQL API with full CRUD routes |
+| `/api-auth` | API Auth Agent | Add JWT/OAuth2/API key authentication to the API |
+| `/api-docs` | API Docs Agent | Generate OpenAPI/Swagger, Postman collection, API README |
+| `/api-test` | API Tester Agent | Run automated tests for all API endpoints |
+| `/api-integrate` | API Integration Agent | Integrate third-party service (PayMongo, Stripe, Twilio, FCM, S3...) |
+| `/api-gateway` | API Gateway Agent | Add versioning, rate limiting, CORS, health check |
+| `/api-mock` | API Mock Agent | Generate mock server and fixture data for all endpoints |
+| `/api-monitor` | API Monitor Agent | Set up health checks, logging, and uptime monitoring |
 
 ## Command Rules
 
